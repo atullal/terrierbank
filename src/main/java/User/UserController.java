@@ -22,16 +22,18 @@ public class UserController {
         return instance;
     }
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         User user = UserDatabase.getUser(username, password);
         if(user != null) {
             System.out.println(user);
             loggedInUser = user;
             isLoggedIn = true;
+            return true;
         }
+        return false;
     }
 
-    public void logout(String username, String password) {
+    public void logout() {
         loggedInUser = null;
         isLoggedIn = false;
     }

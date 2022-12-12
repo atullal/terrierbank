@@ -32,7 +32,6 @@ public class UserDatabase {
         ResultSet result = Database.getInstance().runStatementWithGeneratedKeys(statement);
         try {
             if (result.next()) {
-                System.out.println(result.getInt(1));
                 return result.getInt(1);
             }
         } catch (Exception e) {}

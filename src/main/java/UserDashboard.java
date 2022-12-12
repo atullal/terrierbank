@@ -1,4 +1,6 @@
 
+import User.UserController;
+
 import javax.swing.JSplitPane;
 
 /*
@@ -181,6 +183,10 @@ public class UserDashboard extends javax.swing.JFrame {
         );
 
         pack();
+
+        Home addUpdatePanel = new Home();
+        splitPane.setRightComponent(addUpdatePanel);
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -206,6 +212,10 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        UserController.getInstance().logout();
+        dispose();
+        UserOrAdminLogin log= new UserOrAdminLogin();
+        log.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
