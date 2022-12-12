@@ -1,10 +1,10 @@
-package Backend_Files;
+package Account;
 
 public class AccountFactory {
 
-    public Account makeAccount(String accountType, int bal){
+    public Account makeAccount(AccountType accountType, int bal){
         switch (accountType){
-            case "Checking":
+            case CHECKING:
                 return new CheckingAccount(bal);
             default:
                 return new SavingsAccount(bal);

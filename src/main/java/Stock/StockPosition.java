@@ -1,4 +1,7 @@
-package Backend_Files;
+package Stock;
+
+import Account.SecurityAccount;
+import User.User;
 
 public class StockPosition {
     //Uniquely identifies this stock

@@ -4,17 +4,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Database {
-    private static Database instance = null;
+public class DatabaseController {
+    private static DatabaseController instance = null;
     Connector databaseConnector;
 
-    private Database() {
+    private DatabaseController() {
         databaseConnector = new Connector();
     }
 
-    public static Database getInstance() {
+    public static DatabaseController getInstance() {
         if (instance == null) {
-            instance = new Database();
+            instance = new DatabaseController();
         }
         return instance;
     }

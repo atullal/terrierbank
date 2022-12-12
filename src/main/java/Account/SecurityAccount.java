@@ -1,6 +1,6 @@
-package Backend_Files;
+package Account;
 
-public class SecurityAccount extends Account{
+public class SecurityAccount extends Account {
     private double bal;
     private Account savingsAccount;
 

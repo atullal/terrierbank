@@ -1,6 +1,8 @@
-package Backend_Files;
+package Stock;
 
-public class Stock {
+import Database.Model;
+
+public class Stock implements Model {
 
     //Stock ID, uniquely identifies the
     private int sid;
@@ -36,5 +38,10 @@ public class Stock {
 
     public void setMarketValue(double marketValue) {
         this.marketValue = marketValue;
+    }
+
+    @Override
+    public void save() {
+
     }
 }

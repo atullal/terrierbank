@@ -1,8 +1,7 @@
 package User;
 
-import Database.Database;
+import Backend_Files.Customer;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class UserController {
@@ -43,7 +42,7 @@ public class UserController {
     }
 
     public void addUser(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
-        User user = new User(name, dateOfBirth, address, idNumber, userName, password);
+        User user = new Customer(name, dateOfBirth, address, idNumber, userName, password);
         user.save();
     }
 }

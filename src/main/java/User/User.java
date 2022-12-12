@@ -5,7 +5,7 @@ import Database.Model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User implements Model {
+public abstract class User implements Model {
     int id;
     String name;
     Date dateOfBirth;
@@ -14,7 +14,7 @@ public class User implements Model {
     String userName;
     String password;
 
-    public User(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
+    protected User(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
@@ -23,7 +23,7 @@ public class User implements Model {
         this.password = password;
     }
 
-    public User(int id, String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
+    protected User(int id, String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;

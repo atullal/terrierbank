@@ -1,4 +1,7 @@
-package Backend_Files;
+package Stock;
+
+import Account.SecurityAccount;
+import User.User;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ public class StockMarket {
 
 
     //Buy stocks
-    public StockPosition buyStock(Stock stock, User user , SecurityAccount secAccnt,  int shares){
+    public StockPosition buyStock(Stock stock, User user , SecurityAccount secAccnt, int shares){
         double stockValue = stock.getMarketValue() * shares;
         int stockPos = stockPositions.size() + 1;
         StockPosition sp = new StockPosition(stockPos , stock, user , secAccnt , shares);

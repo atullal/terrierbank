@@ -1,18 +1,17 @@
 package User;
 
-import Database.Database;
+import Backend_Files.Customer;
+import Database.DatabaseController;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 
 public class UserDatabase {
     public UserDatabase() {
     }
 
-    public static void createUserTable() {
+    public static void createTable() {
         String statement = "CREATE TABLE USER " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " NAME           TEXT    NOT NULL, " +
@@ -21,7 +20,7 @@ public class UserDatabase {
                 " IDNUMBER         TEXT     NOT NULL,"+
                 " USERNAME         TEXT     NOT NULL,"+
                 " PASSWORD         TEXT     NOT NULL)";
-        Database.getInstance().updateStatement(statement);
+        DatabaseController.getInstance().updateStatement(statement);
     }
 
     public static int insertUser(String name, Date dob, String address, String idNumber, String userName, String password) {
@@ -29,7 +28,7 @@ public class UserDatabase {
         String date = formatter.format(dob);
         String statement = "INSERT INTO USER (NAME,DOB,ADDRESS,IDNUMBER, USERNAME, PASSWORD) " +
                 "VALUES ('"+name+"', '"+date+"', '"+address+"', '"+idNumber+"', '"+userName+"', '"+password+"' );";
-        ResultSet result = Database.getInstance().runStatementWithGeneratedKeys(statement);
+        ResultSet result = DatabaseController.getInstance().runStatementWithGeneratedKeys(statement);
         try {
             if (result.next()) {
                 return result.getInt(1);
@@ -40,7 +39,7 @@ public class UserDatabase {
 
     public static User getUser(String userName, String password) {
         String statement = "SELECT * FROM USER  WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
-        ResultSet result = Database.getInstance().queryStatement(statement);
+        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {
             if (result.next()) {
                 int id = result.getInt("ID");
@@ -52,7 +51,7 @@ public class UserDatabase {
                 String  idNum = result.getString("IDNUMBER");
                 String  user = result.getString("USERNAME");
                 String  pass = result.getString("PASSWORD");
-                return new User(id, name, date, address, idNum, user, pass);
+                return new Customer(id, name, date, address, idNum, user, pass);
             }
         } catch (Exception e) {
             System.out.println("Cannot find the user");
