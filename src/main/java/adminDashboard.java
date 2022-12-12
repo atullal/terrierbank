@@ -178,7 +178,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        viewTrans addUpdatePanel = new viewTrans();
+        ViewTransactions addUpdatePanel = new ViewTransactions();
         splitPane.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 

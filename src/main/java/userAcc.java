@@ -147,7 +147,7 @@ public class userAcc extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        viewTrans addUpdatePanel = new viewTrans();
+        ViewTransactions addUpdatePanel = new ViewTransactions();
         userDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton4ActionPerformed
