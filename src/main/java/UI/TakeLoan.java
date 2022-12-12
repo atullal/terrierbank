@@ -1,7 +1,7 @@
+package UI;
 
 import java.io.File;
 import javax.swing.JFileChooser;
-import static javax.swing.JFileChooser.APPROVE_OPTION;
 
 
 /*

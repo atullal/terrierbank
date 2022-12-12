@@ -1,8 +1,4 @@
-
-import javax.swing.ImageIcon;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+package UI;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
