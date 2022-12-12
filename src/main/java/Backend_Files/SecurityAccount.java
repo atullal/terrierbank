@@ -5,23 +5,18 @@ public class SecurityAccount extends Account{
     private Account savingsAccount;
 
     SecurityAccount(){
-        this.bal = 0;
+        super();
         this.savingsAccount = null;
     }
-    SecurityAccount(Account account, int bal){
+    SecurityAccount(Account account, double bal){
+        super(bal);
         this.savingsAccount = account;
-        this.bal = bal;
-    }
 
-    public void setBal(double bal) {
-        this.bal = bal;
-    }
-
-    public double getBal() {
-        return bal;
     }
 
     public Account getSavingsAccount() {
         return savingsAccount;
     }
+
+
 }
