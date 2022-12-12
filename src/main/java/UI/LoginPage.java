@@ -4,6 +4,7 @@ package UI;/*
  */
 
 import User.UserController;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -168,6 +169,7 @@ public class LoginPage extends javax.swing.JFrame {
         } else {
             System.out.println("Incorrect username or password");
             // TODO: Show error message in the UI.
+            showMessageDialog(this,"Incorrect username or password !!");
         }
     }//GEN-LAST:event_loginActionPerformed
 
