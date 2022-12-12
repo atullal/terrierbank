@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -203,6 +205,7 @@ public class SignupForm extends javax.swing.JFrame {
 
     private void bsupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsupActionPerformed
         // TODO add your handling code here:
+        UserController.getInstance().addUser(tname.getText(), jDateChooser2.getDate(), taddress.getText(), tidnum.getText(), tuname.getText(), String.valueOf(tpass.getPassword()));
         dispose();
         LoginPage loginpage= new LoginPage();
         loginpage.setVisible(true); 

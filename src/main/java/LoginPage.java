@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -158,9 +160,15 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        dispose();
-        UserDashboard log= new UserDashboard();
-        log.setVisible(true);
+        boolean success = UserController.getInstance().login(userField.getText(), String.valueOf(passField.getPassword()));
+        if(success) {
+            dispose();
+            UserDashboard log= new UserDashboard();
+            log.setVisible(true);
+        } else {
+            System.out.println("Incorrect username or password");
+            // TODO: Show error message in the UI.
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
