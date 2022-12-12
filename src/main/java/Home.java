@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -27,7 +29,8 @@ public class Home extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("home");
+        String name = UserController.getInstance().getLoggedInUser().getName();
+        jLabel1.setText(name);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
