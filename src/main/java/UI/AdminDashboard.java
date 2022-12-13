@@ -250,3 +250,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel rpanel;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+

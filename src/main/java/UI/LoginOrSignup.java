@@ -32,6 +32,8 @@ public class LoginOrSignup extends javax.swing.JFrame {
         leftLabel1 = new javax.swing.JPanel();
         login1 = new javax.swing.JButton();
         signUp1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +53,7 @@ public class LoginOrSignup extends javax.swing.JFrame {
         );
         leftLabel1Layout.setVerticalGroup(
             leftLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
 
         login1.setLabel("LOGIN");
@@ -70,6 +72,17 @@ public class LoginOrSignup extends javax.swing.JFrame {
             }
         });
 
+        back.setText("BACK");
+        back.setPreferredSize(new java.awt.Dimension(150, 60));
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel1.setText("USER");
+
         javax.swing.GroupLayout lOrSLayout = new javax.swing.GroupLayout(lOrS);
         lOrS.setLayout(lOrSLayout);
         lOrSLayout.setHorizontalGroup(
@@ -77,20 +90,28 @@ public class LoginOrSignup extends javax.swing.JFrame {
             .addGroup(lOrSLayout.createSequentialGroup()
                 .addComponent(leftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(330, 330, 330)
-                .addGroup(lOrSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signUp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(lOrSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(login1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signUp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(lOrSLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1)))
                 .addContainerGap(330, Short.MAX_VALUE))
         );
         lOrSLayout.setVerticalGroup(
             lOrSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(leftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addGroup(lOrSLayout.createSequentialGroup()
-                .addGap(340, 340, 340)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1)
+                .addGap(197, 197, 197)
                 .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(signUp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +147,13 @@ public class LoginOrSignup extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_login1ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        UserOrAdminLogin log= new UserOrAdminLogin();
+        log.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +254,8 @@ public class LoginOrSignup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel lOrS;
     private javax.swing.JPanel leftLabel1;
     private javax.swing.JButton login1;
