@@ -4,6 +4,10 @@
  */
 package UI;
 
+import Account.AccountType;
+import Backend_Files.Customer;
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -13,7 +17,15 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
     /**
      * Creates new form SecuritiesDepositForm
      */
+    private String accountNo;
+    private AccountType accountType;
     public SecuritiesDepositForm() {
+        initComponents();
+    }
+
+    public SecuritiesDepositForm(String accountNo, AccountType accountType) {
+        this.accountNo = accountNo;
+        this.accountType = accountType;
         initComponents();
     }
 
