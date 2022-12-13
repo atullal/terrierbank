@@ -3,6 +3,8 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Transaction.Transaction;
+
 /**
  *
  * @author saisuryavarshith
@@ -12,7 +14,9 @@ public class TransferAmount extends javax.swing.JPanel {
     /**
      * Creates new form transAmt
      */
+    Transaction transaction;
     public TransferAmount() {
+        transaction = new Transaction();
         initComponents();
     }
 
@@ -115,11 +119,14 @@ public class TransferAmount extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // Confirm button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
+        // Transfers money to said account
+        transaction.process(jTextField3.getText(), jTextField2.getText(), Integer.parseInt(jTextField1.getText()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -129,6 +136,9 @@ public class TransferAmount extends javax.swing.JPanel {
         .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_BackActionPerformed
 
+    // TextField3 - your account
+    // TextField2 - receivers account
+    // TextField1 - amount
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
