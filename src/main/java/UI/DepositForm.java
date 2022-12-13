@@ -55,7 +55,7 @@ public class DepositForm extends javax.swing.JPanel {
 
         jLabel3.setText("CURRENCY");
 
-        jButton2.setText("CONFIRM");
+        jButton2.setText("BACK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -145,3 +145,8 @@ public class DepositForm extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+
