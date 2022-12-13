@@ -11,11 +11,6 @@ public class Main {
         AccountDatabase.createTable();
         TransactionDatabase.createTable();
         StockDatabase.createTable();
-//        StockDatabase.insert("Apple", "AAPL", 123.0);
-//        for (Stock stock :
-//                StockDatabase.getStocks()) {
-//            System.out.println(stock);
-//        }
         UserOrAdminLogin.main(args);
     }
 }

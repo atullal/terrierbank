@@ -64,4 +64,14 @@ public class StockPosition {
     public int getNumShares() {
         return numShares;
     }
+    @Override
+    public String toString(){
+        return "Stock{" +
+                "sid=" + stockPos +
+                ", stock='" + stock.getStockName() + '\'' +
+                ", User='" + user.getUserName() + '\'' +
+                ", Account=" + secAccnt.getAccountNumber() +
+                ", NumShares='" + numShares + '\'' +
+                '}';
+    }
 }
