@@ -145,9 +145,10 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:]
-        System.out.println(jComboBox1.getSelectedItem());
-        System.out.println(jTextField1.getText());
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()));
+//        System.out.println(jComboBox1.getSelectedItem());
+//        System.out.println(jTextField1.getText());
+//        System.out.println(jComboBox2.getSelectedItem());
+        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()),(String) jComboBox2.getSelectedItem());
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);

@@ -21,7 +21,7 @@ public class Customer extends User {
         this.accounts = new ArrayList<Account>();
     }
 
-    public void createAccount(String accountNo, AccountType accountType, int bal){
+    public void createAccount(String accountNo, AccountType accountType, int bal, String savingsAccNo){
         // TODO Add
         AccountFactory accountFactory = new AccountFactory();
         Account account;
@@ -31,10 +31,17 @@ public class Customer extends User {
             case CHECKING:
                 account = accountFactory.makeAccount(this, accountType, bal, accountNo);
                 account.save();
-                System.out.println(account);
+//                System.out.println(account);
+                accounts.add(account);
+                break;
+            case SECURITY:
+                account = accountFactory.makeSecurityAccount(this, savingsAccNo, bal, accountNo);
+                account.save();
+//                System.out.println(account);
                 accounts.add(account);
                 break;
         }
+
 //        else {
 //            // TODO Make security account with savings account no
 //            account = accountFactory.makeAccount(type, bal, accountNo);

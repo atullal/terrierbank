@@ -151,7 +151,7 @@ public class DepositForm extends javax.swing.JPanel {
          // TODO add your handling code here:]
         System.out.println(jComboBox1.getSelectedItem());
         System.out.println(jTextField1.getText());
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()));
+        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()), "");
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
