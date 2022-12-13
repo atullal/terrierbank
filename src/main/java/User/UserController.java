@@ -21,8 +21,8 @@ public class UserController {
         return instance;
     }
 
-    public boolean login(String username, String password) {
-        User user = UserDatabase.getUser(username, password);
+    public boolean customerLogin(String username, String password) {
+        User user = UserDatabase.getCustomer(username, password);
         if(user != null) {
             System.out.println(user);
             loggedInUser = user;

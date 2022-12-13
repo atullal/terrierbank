@@ -1,6 +1,7 @@
 package Account;
 
 public abstract class Account {
+    private int accountNumber;
     private double bal;
 
     public Account(){
