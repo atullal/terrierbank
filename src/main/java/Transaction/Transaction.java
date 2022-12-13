@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Transaction {
-    // for deposit, sender and receiver account no will be same
+    // for deposit, sender will be self and receiver will be account no
     // for withdraw, receiver will be "cash"
     public void process(String sender, String receiver, double amt){
         // TODO Check transaction code and add code to update values
