@@ -19,6 +19,8 @@ public class StockPosition {
     //Stock Value
     private double stockValue;
 
+    private double purchasedValue;
+
     public StockPosition(int stockPos, Stock s, User u, SecurityAccount acc, int numShares ){
 
         this.stockPos= stockPos;
@@ -27,6 +29,7 @@ public class StockPosition {
         this.secAccnt = acc;
         this.numShares = numShares;
         stockValue = numShares * stock.getMarketValue();
+        purchasedValue = s.getMarketValue();
 
     }
 
