@@ -144,14 +144,16 @@ public class UserViewAccounts extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        UserAccount addUpdatePanel = new UserAccount();
+        System.out.println(jComboBox1.getSelectedItem());
+        UserAccount addUpdatePanel = new UserAccount((Account) jComboBox1.getSelectedItem());
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        UserAccount addUpdatePanel = new UserAccount();
+        System.out.println(jComboBox2.getSelectedItem());
+        UserAccount addUpdatePanel = new UserAccount((Account) jComboBox2.getSelectedItem());
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
