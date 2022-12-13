@@ -3,6 +3,7 @@ package Backend_Files;
 import Account.Account;
 import Account.AccountFactory;
 import Account.AccountType;
+import Account.AccountDatabase;
 import User.User;
 
 import java.util.ArrayList;
@@ -42,7 +43,36 @@ public class Customer extends User {
         // TODO Add account to DB
     }
 
+    public void fetchAccounts() {
+        ArrayList<Account> fetchedAccounts = AccountDatabase.getAccounts(this);
+        if(fetchedAccounts != null) {
+            this.accounts = fetchedAccounts;
+        }
+    }
+
     public ArrayList<Account> getAccounts() {
         return accounts;
+    }
+    
+    public ArrayList<Account> getCheckingAccounts() {
+        ArrayList<Account> checkingAccounts = new ArrayList<>();
+        for (Account account :
+                this.accounts) {
+            if (account.getAccountType() == AccountType.CHECKING) {
+                checkingAccounts.add(account);
+            }
+        }
+        return checkingAccounts;
+    }
+
+    public ArrayList<Account> getSavingAccounts() {
+        ArrayList<Account> savingAccounts = new ArrayList<>();
+        for (Account account :
+                this.accounts) {
+            if (account.getAccountType() == AccountType.SAVINGS) {
+                savingAccounts.add(account);
+            }
+        }
+        return savingAccounts;
     }
 }

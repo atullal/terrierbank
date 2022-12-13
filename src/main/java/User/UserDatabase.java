@@ -51,7 +51,9 @@ public class UserDatabase {
                 String  idNum = result.getString("IDNUMBER");
                 String  user = result.getString("USERNAME");
                 String  pass = result.getString("PASSWORD");
-                return new Customer(id, name, date, address, idNum, user, pass);
+                Customer customer = new Customer(id, name, date, address, idNum, user, pass);
+                customer.fetchAccounts();
+                return customer;
             }
         } catch (Exception e) {
             System.out.println("Cannot find the user");
