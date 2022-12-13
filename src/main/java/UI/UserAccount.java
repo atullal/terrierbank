@@ -74,6 +74,7 @@ public class UserAccount extends javax.swing.JPanel {
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(account.getAccountNumber());
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
@@ -91,10 +92,12 @@ public class UserAccount extends javax.swing.JPanel {
         jLabel3.setSize(new java.awt.Dimension(40, 20));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(account.getAccountType().toString());
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText(String.valueOf(account.getBal()));
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel6.setSize(new java.awt.Dimension(40, 20));

@@ -55,8 +55,12 @@ public class AccountDatabase {
 
     public static void insert(Account account) {
         System.out.println("Inserting new account - " + account);
-        String statement = "INSERT INTO ACCOUNT (ACCOUNTNUM,USERID,ACCOUNTTYPE,BALANCE) " +
+        String statement = "UPDATE ACCOUNT (ACCOUNTNUM,USERID,ACCOUNTTYPE,BALANCE) " +
                 "VALUES ("+account.getAccountNumber()+", "+account.getCustomer().getId()+", '"+account.getAccountType()+"', "+account.getBal()+");";
         DatabaseController.getInstance().updateStatement(statement);
+    }
+
+    public static void update(Account account) {
+
     }
 }
