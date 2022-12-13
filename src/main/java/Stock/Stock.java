@@ -7,11 +7,13 @@ public class Stock implements Model {
     //Stock ID, uniquely identifies the
     private int sid;
     //Represents the stock name
+    private String symbol;
     private String stockName;
     private double marketValue;
 
-    public Stock(int sid, String stockName, double marketValue){
+    public Stock(int sid, String symbol, String stockName, double marketValue){
         this.sid = sid;
+        this.symbol = symbol;
         this.stockName = stockName;
         this.marketValue = marketValue;
     }
@@ -43,5 +45,15 @@ public class Stock implements Model {
     @Override
     public void save() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "sid=" + sid +
+                ", symbol='" + symbol + '\'' +
+                ", stockName='" + stockName + '\'' +
+                ", marketValue=" + marketValue +
+                '}';
     }
 }

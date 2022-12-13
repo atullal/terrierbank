@@ -35,7 +35,6 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -69,8 +68,6 @@ public class UserDashboard extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-
-        jButton6.setText("STOCK MARKET");
 
         jButton1.setText("APPLY FOR LOAN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +116,6 @@ public class UserDashboard extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -138,13 +134,11 @@ public class UserDashboard extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(50, 50, 50)
                 .addComponent(jButton2)
-                .addGap(50, 50, 50)
-                .addComponent(jButton6)
-                .addGap(50, 50, 50)
+                .addGap(63, 63, 63)
                 .addComponent(jButton8)
-                .addGap(50, 50, 50)
+                .addGap(46, 46, 46)
                 .addComponent(jButton7)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(jPanel3);
@@ -184,10 +178,6 @@ public class UserDashboard extends javax.swing.JFrame {
         );
 
         pack();
-
-        Home addUpdatePanel = new Home();
-        splitPane.setRightComponent(addUpdatePanel);
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -292,7 +282,6 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
