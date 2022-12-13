@@ -37,7 +37,7 @@ public class UserDatabase {
         return 0;
     }
 
-    public static User getUser(String userName, String password) {
+    public static Customer getCustomer(String userName, String password) {
         String statement = "SELECT * FROM USER  WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {

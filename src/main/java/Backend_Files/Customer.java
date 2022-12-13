@@ -20,20 +20,19 @@ public class Customer extends User {
         this.accounts = new ArrayList<Account>();
     }
 
-    public void createAccount(String accountNo, int bal){
+    public void createAccount(String accountNo, AccountType accountType, int bal){
         // TODO Add
         AccountFactory accountFactory = new AccountFactory();
         Account account;
-        if (accountNo.startsWith("1")){
-            AccountType type = AccountType.SAVINGS;
-            account = accountFactory.makeAccount(type, bal, accountNo);
-            System.out.println("Savings: "+accountNo);
-        }
-        else //(accountNo.startsWith("2"))
-        {
-            AccountType type = AccountType.CHECKING;
-            account = accountFactory.makeAccount(type, bal, accountNo);
-            System.out.println("Checkings: "+accountNo);
+
+        switch (accountType) {
+            case SAVINGS:
+            case CHECKING:
+                account = accountFactory.makeAccount(this, accountType, bal, accountNo);
+                account.save();
+                System.out.println(account);
+                accounts.add(account);
+                break;
         }
 //        else {
 //            // TODO Make security account with savings account no
@@ -41,6 +40,9 @@ public class Customer extends User {
 //            System.out.println("Security: "+accountNo);
 //        }
         // TODO Add account to DB
-        accounts.add(account);
+    }
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
     }
 }

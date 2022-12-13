@@ -1,7 +1,15 @@
 package UI;
 
+import Account.Account;
+import Backend_Files.Customer;
+import Loan.CollateralType;
+import Loan.LoanController;
+import Loan.LoanType;
+import User.UserController;
+
 import java.io.File;
-import javax.swing.JFileChooser;
+import java.util.ArrayList;
+import javax.swing.*;
 
 
 /*
@@ -14,6 +22,8 @@ import javax.swing.JFileChooser;
  * @author saisuryavarshith
  */
 public class TakeLoan extends javax.swing.JPanel {
+
+    private File selectedFile = null;
 
     /**
      * Creates new form takeloan
@@ -33,10 +43,10 @@ public class TakeLoan extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<LoanType>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new JComboBox<CollateralType>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -60,7 +70,7 @@ public class TakeLoan extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR LOAN", "EDUCATION", "HOME LOAN", "PERSONAL LOAN" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<LoanType>(LoanType.values()));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -71,7 +81,7 @@ public class TakeLoan extends javax.swing.JPanel {
 
         jLabel2.setText("COLLATERAL TYPE");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR", "GOLD", "PROPERTY", "NO COLLATERAL" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<CollateralType>(CollateralType.values()));
 
         jLabel3.setText("PROOF OF COLLATERAL");
 
@@ -92,7 +102,9 @@ public class TakeLoan extends javax.swing.JPanel {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        ArrayList<Account> accounts = ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts();
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
 
@@ -172,6 +184,7 @@ public class TakeLoan extends javax.swing.JPanel {
         int res = file_upload.showSaveDialog(null);
         if(res == JFileChooser.APPROVE_OPTION){
             File file_path = new File(file_upload.getSelectedFile().getAbsolutePath());
+            selectedFile = file_path;
             System.out.println(file_path);
     }
 
@@ -184,6 +197,14 @@ public class TakeLoan extends javax.swing.JPanel {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        System.out.println(jComboBox3.getSelectedItem());
+        System.out.println(jComboBox4.getSelectedItem());
+        System.out.println(jComboBox1.getSelectedItem());
+        System.out.println(jComboBox2.getSelectedItem());
+        System.out.println(selectedFile);
+        if (jComboBox3.getSelectedItem() != null) {
+            LoanController.getInstance().newLoan(jComboBox3.getSelectedItem().toString(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
+        }
         TermsAndConditionsLoan addUpdatePanel = new TermsAndConditionsLoan();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
@@ -202,9 +223,9 @@ public class TakeLoan extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<LoanType> jComboBox1;
+    private javax.swing.JComboBox<CollateralType> jComboBox2;
+    private javax.swing.JComboBox<Account> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

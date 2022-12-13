@@ -1,7 +1,9 @@
 package Account;
 
+import Backend_Files.Customer;
+
 public class CheckingAccount extends Account {
-    CheckingAccount(double bal){
-        super(bal);
+    CheckingAccount(Customer customer, double bal, String accountNo){
+        super(customer, bal, accountNo, AccountType.CHECKING);
     }
 }
