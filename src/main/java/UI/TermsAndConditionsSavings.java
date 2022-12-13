@@ -65,7 +65,10 @@ public class TermsAndConditionsSavings extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DepositForm addUpdatePanel = new DepositForm();
+        String accountNo = "1";
+        int rand = (int)(Math.random()*(99999999-10000000+1)+10000000);
+        accountNo = accountNo + String.valueOf(rand);
+        DepositForm addUpdatePanel = new DepositForm(accountNo);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
 

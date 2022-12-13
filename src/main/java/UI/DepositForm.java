@@ -12,8 +12,14 @@ public class DepositForm extends javax.swing.JPanel {
     /**
      * Creates new form cresavacc
      */
+    private String accountNo;
     public DepositForm() {
         initComponents();
+    }
+    
+    public DepositForm(String accountNo) {
+        initComponents();
+        this.accountNo = accountNo;
     }
 
     /**
@@ -95,6 +101,16 @@ public class DepositForm extends javax.swing.JPanel {
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
+        // TODO Make account number visible and uneditable
+        if (accountNo.startsWith("1")){
+            System.out.println("Savings: "+accountNo);
+        }
+        else if (accountNo.startsWith("2")){
+            System.out.println("Checkings: "+accountNo);
+        }
+        else {
+            System.out.println("Security: "+accountNo);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -1,5 +1,6 @@
 package User;
 
+import Account.Account;
 import Database.Model;
 
 import java.util.ArrayList;

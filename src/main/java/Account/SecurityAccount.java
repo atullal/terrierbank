@@ -11,12 +11,10 @@ public class SecurityAccount extends Account {
     SecurityAccount(Account account, double bal){
         super(bal);
         this.savingsAccount = account;
-
     }
 
     public Account getSavingsAccount() {
         return savingsAccount;
     }
-
 
 }

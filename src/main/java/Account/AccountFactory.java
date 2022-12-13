@@ -2,7 +2,7 @@ package Account;
 
 public class AccountFactory {
 
-    public Account makeAccount(AccountType accountType, int bal){
+    public Account makeAccount(AccountType accountType, int bal, String accountNo){
         switch (accountType){
             case CHECKING:
                 return new CheckingAccount(bal);
@@ -11,7 +11,7 @@ public class AccountFactory {
         }
     }
 
-    public Account makeAccount(String accountType, Account account, int bal){
+    public Account makeSecurityAccount(Account account, int bal, String accountNo){
         return new SecurityAccount(account, bal);
     }
 }

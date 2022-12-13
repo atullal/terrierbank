@@ -196,7 +196,8 @@ public class UserDashboard extends javax.swing.JFrame {
         splitPane.setRightComponent(addUpdatePanel);
         
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
+    // Create Account Button
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         CreateAccount addUpdatePanel = new CreateAccount();

@@ -89,21 +89,24 @@ public class CreateAccount extends javax.swing.JPanel {
                 .addContainerGap(263, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // Checking Account
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         TermsAndConditionsCheckings addUpdatePanel = new TermsAndConditionsCheckings();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    // Security Account
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         TermsAndConditionsSecurities addUpdatePanel = new TermsAndConditionsSecurities();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
+    // Savings Account
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         TermsAndConditionsSavings addUpdatePanel = new TermsAndConditionsSavings();
