@@ -26,6 +26,7 @@ public class StockPosition {
         this.user = u;
         this.secAccnt = acc;
         this.numShares = numShares;
+        stockValue = numShares * stock.getMarketValue();
 
     }
 

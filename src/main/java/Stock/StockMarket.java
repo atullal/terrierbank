@@ -67,6 +67,20 @@ public class StockMarket {
 
     }
 
+    public Double viewProfits(User user){
+        double profits = 0;
+        double stockProfit;
+        for(int i = 0; i < stockPositions.size() ; i++){
+            if(user.equals(stockPositions.get(i).getUser())){
+                double curValue = stockPositions.get(i).getStock().getMarketValue() * stockPositions.get(i).getNumShares();
+                stockProfit = curValue - stockPositions.get(i).getStockValue();
+                profits += stockProfit;
+
+            }
+        }
+        return profits;
+    }
+
     private void addStock(StockPosition sp) {
         stockPositions.add(sp);
     }
