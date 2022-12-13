@@ -16,6 +16,8 @@ public class StockPosition {
     //The security account number of the
     private SecurityAccount secAccnt;
     private int numShares;
+    //Stock Value
+    private double stockValue;
 
     public StockPosition(int stockPos, Stock s, User u, SecurityAccount acc, int numShares ){
 
@@ -25,6 +27,14 @@ public class StockPosition {
         this.secAccnt = acc;
         this.numShares = numShares;
 
+    }
+
+    public void setStockValue(double stockValue) {
+        this.stockValue = stockValue;
+    }
+
+    public double getStockValue() {
+        return stockValue;
     }
 
     public int getStockPos() {

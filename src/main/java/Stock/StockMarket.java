@@ -48,6 +48,25 @@ public class StockMarket {
         return sp;
     }
 
+    public StockPosition sellStock(int stockPos){
+        StockPosition sp = null;
+        Double curValue;
+        Double profit;
+        for(int i = 0; i < stockPositions.size() ; i++){
+            if(stockPos == stockPositions.get(i).getStockPos()){
+                curValue = stockPositions.get(i).getStock().getMarketValue() * stockPositions.get(i).getNumShares();
+                profit = curValue - stockPositions.get(i).getStockValue();
+                stockPositions.get(i).getAcc().setAmount(stockPositions.get(i).getAcc().getAmount() + profit);
+                sp = stockPositions.get(i);
+                stockPositions.remove(i);
+                return sp;
+            }
+
+            }
+            return sp;
+
+    }
+
     private void addStock(StockPosition sp) {
         stockPositions.add(sp);
     }
