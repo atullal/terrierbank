@@ -135,6 +135,7 @@ public class DepositFormSecurityAccount extends javax.swing.JPanel {
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
         // TODO Make account number visible and uneditable
+        String accountNo = "1123456";
         if (accountNo.startsWith("1")){
             
             jLabel6.setText(accountNo);
@@ -149,6 +150,7 @@ public class DepositFormSecurityAccount extends javax.swing.JPanel {
             
              jLabel6.setText(accountNo);
              jLabel5.setText("Security Account");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -165,6 +167,7 @@ public class DepositFormSecurityAccount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

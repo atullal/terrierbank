@@ -3,6 +3,8 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.AccountType;
+
 /**
  *
  * @author saisuryavarshith
@@ -80,7 +82,7 @@ public class TermsAndConditionsSecurities extends javax.swing.JPanel {
         int rand = (int)(Math.random()*(99999999-10000000+1)+10000000);
         accountNo = accountNo + String.valueOf(rand);
         // TODO Change to make separate form for securities account
-        DepositForm addUpdatePanel = new DepositForm(accountNo);
+        DepositForm addUpdatePanel = new DepositForm(accountNo, AccountType.SECURITY);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed

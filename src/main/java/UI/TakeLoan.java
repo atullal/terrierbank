@@ -1,10 +1,14 @@
 package UI;
 
+import Account.Account;
+import Backend_Files.Customer;
 import Loan.CollateralType;
 import Loan.LoanController;
 import Loan.LoanType;
+import User.UserController;
 
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 
 
@@ -98,7 +102,9 @@ public class TakeLoan extends javax.swing.JPanel {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        ArrayList<Account> accounts = ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts();
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
 
@@ -196,7 +202,9 @@ public class TakeLoan extends javax.swing.JPanel {
         System.out.println(jComboBox1.getSelectedItem());
         System.out.println(jComboBox2.getSelectedItem());
         System.out.println(selectedFile);
-        LoanController.getInstance().newLoan(jComboBox3.getSelectedItem().toString(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
+        if (jComboBox3.getSelectedItem() != null) {
+            LoanController.getInstance().newLoan(jComboBox3.getSelectedItem().toString(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
+        }
         TermsAndConditionsLoan addUpdatePanel = new TermsAndConditionsLoan();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
@@ -217,7 +225,7 @@ public class TakeLoan extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<LoanType> jComboBox1;
     private javax.swing.JComboBox<CollateralType> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<Account> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

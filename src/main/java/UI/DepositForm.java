@@ -3,6 +3,10 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.AccountType;
+import Backend_Files.Customer;
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -13,13 +17,15 @@ public class DepositForm extends javax.swing.JPanel {
      * Creates new form cresavacc
      */
     private String accountNo;
+    private AccountType accountType;
     public DepositForm() {
         initComponents();
     }
     
-    public DepositForm(String accountNo) {
-        initComponents();
+    public DepositForm(String accountNo, AccountType accountType) {
         this.accountNo = accountNo;
+        this.accountType = accountType;
+        initComponents();
     }
 
     /**
@@ -52,6 +58,7 @@ public class DepositForm extends javax.swing.JPanel {
         });
 
         jLabel2.setText("ACCOUNT NUMBER");
+        jLabel4.setText(accountNo);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD", "INR", "EURO" }));
 
@@ -65,6 +72,9 @@ public class DepositForm extends javax.swing.JPanel {
         });
 
         jLabel6.setText("ACCOUNT TYPE");
+        if(accountType != null) {
+            jLabel5.setText(accountType.toString());
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,26 +130,12 @@ public class DepositForm extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // TODO add your handling code here:]
-         
+        System.out.println(jComboBox1.getSelectedItem());
+        System.out.println(jTextField1.getText());
+        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()));
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
-        // TODO Make account number visible and uneditable
-        if (accountNo.startsWith("1")){
-            
-            jLabel6.setText(accountNo);
-            jLabel5.setText("Savings");
-        }
-        else if (accountNo.startsWith("2")){
-           
-             jLabel6.setText(accountNo);
-             jLabel5.setText("Checkings");
-       }
-        else {
-            
-             jLabel6.setText(accountNo);
-             jLabel5.setText("Security Account");
-       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

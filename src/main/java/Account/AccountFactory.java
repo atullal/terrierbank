@@ -1,17 +1,19 @@
 package Account;
 
+import Backend_Files.Customer;
+
 public class AccountFactory {
 
-    public Account makeAccount(AccountType accountType, int bal, String accountNo){
+    public Account makeAccount(Customer customer, AccountType accountType, int bal, String accountNo){
         switch (accountType){
             case CHECKING:
-                return new CheckingAccount(bal);
+                return new CheckingAccount(customer, bal, accountNo);
             default:
-                return new SavingsAccount(bal);
+                return new SavingsAccount(customer, bal, accountNo);
         }
     }
 
-    public Account makeSecurityAccount(Account account, int bal, String accountNo){
-        return new SecurityAccount(account, bal);
+    public Account makeSecurityAccount(Customer customer, Account account, int bal, String accountNo){
+        return new SecurityAccount(customer, account, bal, accountNo);
     }
 }
