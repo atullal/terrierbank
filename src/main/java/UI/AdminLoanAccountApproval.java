@@ -120,3 +120,8 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+

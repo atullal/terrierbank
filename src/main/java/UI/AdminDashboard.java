@@ -193,6 +193,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -249,3 +250,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel rpanel;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
