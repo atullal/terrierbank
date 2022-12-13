@@ -1,7 +1,5 @@
 package Stock;
 
-import Account.Account;
-import Backend_Files.Customer;
 import Database.DatabaseController;
 
 import java.sql.ResultSet;
@@ -42,7 +40,7 @@ public class StockDatabase {
                 int sid = result.getInt("ID");
                 String  symbol = result.getString("SYMBOL");
                 String name  = result.getString("NAME");
-                int value  = result.getInt("VALUE");
+                double value  = result.getDouble("VALUE");
 
                 stocks.add(new Stock(sid, symbol, name, value));
             }

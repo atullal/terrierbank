@@ -46,4 +46,14 @@ public class Stock implements Model {
     public void save() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "sid=" + sid +
+                ", symbol='" + symbol + '\'' +
+                ", stockName='" + stockName + '\'' +
+                ", marketValue=" + marketValue +
+                '}';
+    }
 }
