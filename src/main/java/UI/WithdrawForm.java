@@ -164,17 +164,17 @@ public class WithdrawForm extends javax.swing.JPanel {
             case "INR":
                 CurrencyRupee inr = new CurrencyRupee();
                 inr.setRate();
-                amt = inr.fromDefault(amt);
+                amt = inr.convert(amt);
                 break;
             case "EUR":
                 CurrencyEuro euro = new CurrencyEuro();
                 euro.setRate();
-                amt = euro.fromDefault(amt);
+                amt = euro.convert(amt);
                 break;
             default:
                 CurrencyUSD usd = new CurrencyUSD();
                 usd.setRate();
-                amt = usd.fromDefault(amt);
+                amt = usd.convert(amt);
         }
         transaction.process(accountNo, "Cash", amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();

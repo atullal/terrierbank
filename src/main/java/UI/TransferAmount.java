@@ -132,17 +132,17 @@ public class TransferAmount extends javax.swing.JPanel {
             case "INR":
                 CurrencyRupee inr = new CurrencyRupee();
                 inr.setRate();
-                amt = inr.toDefault(amt);
+                amt = inr.convert(amt);
                 break;
             case "EUR":
                 CurrencyEuro euro = new CurrencyEuro();
                 euro.setRate();
-                amt = euro.toDefault(amt);
+                amt = euro.convert(amt);
                 break;
             default:
                 CurrencyUSD usd = new CurrencyUSD();
                 usd.setRate();
-                amt = usd.toDefault(amt);
+                amt = usd.convert(amt);
         }
         // Transfers money to said account
         transaction.process(jLabel5.getText(), jLabel6.getText(), amt);
