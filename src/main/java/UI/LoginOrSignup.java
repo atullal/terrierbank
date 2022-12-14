@@ -146,6 +146,8 @@ public class LoginOrSignup extends javax.swing.JFrame {
         log.setVisible(true);
         
         
+        
+        
     }//GEN-LAST:event_login1ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

@@ -177,6 +177,9 @@ public class AdminLogin extends javax.swing.JFrame {
         dispose();
         AdminDashboard log= new AdminDashboard();
         log.setVisible(true);
+        Home addUpdatePanel = new Home();
+        UserDashboard.getSplitPane()
+                .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_loginActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed

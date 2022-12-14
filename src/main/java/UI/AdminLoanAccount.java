@@ -49,18 +49,24 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton2.setText("REFRESH");
+        jButton2.setBorder(new javax.swing.border.MatteBorder(null));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton1.setText("OK");
+        jButton1.setBorder(new javax.swing.border.MatteBorder(null));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel8.setText(String.valueOf(loan.getRepaymentPeriod()));
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel8.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel8.setSize(new java.awt.Dimension(40, 20));
 
@@ -82,9 +88,10 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
-        jLabel4.setText(String.valueOf(loan.getAssociatedAccount().getAccountNumber()));
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -99,20 +106,23 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
-        jLabel1.setText(String.valueOf(loan.getPaidAmount()));
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
-        jLabel10.setText(String.valueOf(loan.getLoanAmount() - loan.getPaidAmount()));
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel10.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel10.setSize(new java.awt.Dimension(40, 20));
 
-        jLabel6.setText(loan.getStatus().toString());
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel6.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel6.setSize(new java.awt.Dimension(40, 20));
 

@@ -175,11 +175,15 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
+        
         boolean success = UserController.getInstance().customerLogin(userField.getText(), String.valueOf(passField.getPassword()));
         if(success) {
             dispose();
             UserDashboard log= new UserDashboard();
             log.setVisible(true);
+            Home addUpdatePanel = new Home();
+        UserDashboard.getSplitPane()
+                .setRightComponent(addUpdatePanel);
         } else {
             System.out.println("Incorrect username or password");
             // TODO: Show error message in the UI.
