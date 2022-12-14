@@ -67,8 +67,6 @@ public class TransferAmount extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setText("jLabel7");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,3 +153,7 @@ public class TransferAmount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+

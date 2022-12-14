@@ -141,9 +141,6 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel7"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
