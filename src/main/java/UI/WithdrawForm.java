@@ -155,7 +155,14 @@ public class WithdrawForm extends javax.swing.JPanel {
     // Withdraw Button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:]
-        transaction.process(accountNo, "Cash", Integer.parseInt(jTextField1.getText()));
+        double amt = Double.parseDouble(jTextField1.getText());
+        String currency = (String) jComboBox1.getSelectedItem();
+        switch (currency){
+            case "INR":
+                System.out.println("INR");
+
+        }
+        transaction.process(accountNo, "Cash", amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
