@@ -67,10 +67,6 @@ public class TransferAmount extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setText("jLabel5");
-
-        jLabel6.setText("jLabel6");
-
         jLabel7.setText("jLabel7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
