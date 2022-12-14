@@ -159,7 +159,7 @@ public class UserAccount extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        TransferAmount addUpdatePanel = new TransferAmount();
+        TransferAmount addUpdatePanel = new TransferAmount(Integer.toString(account.getAccountNumber()));
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

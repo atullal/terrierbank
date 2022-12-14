@@ -18,9 +18,12 @@ public class TransferAmount extends javax.swing.JPanel {
      * Creates new form transAmt
      */
     Transaction transaction;
-    public TransferAmount() {
+    String accountNo;
+    public TransferAmount(String accountNo) {
+        this.accountNo = accountNo;
         transaction = new Transaction();
         initComponents();
+        jLabel5.setText(this.accountNo);
     }
 
     /**
@@ -128,7 +131,7 @@ public class TransferAmount extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         // TODO change jlabel7 to whatever the variable name of the textbox is
-        double amt = Double.parseDouble(jLabel7.getText());
+        double amt = Double.parseDouble(jTextField4.getText());
         String currency = (String) jComboBox1.getSelectedItem();
         switch (currency){
             case "INR":
@@ -147,7 +150,7 @@ public class TransferAmount extends javax.swing.JPanel {
                 amt = usd.convert(amt);
         }
         // Transfers money to said account
-        transaction.process(jLabel5.getText(), jLabel6.getText(), amt);
+        transaction.process(jLabel5.getText(), jTextField3.getText(), amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
