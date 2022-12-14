@@ -4,6 +4,9 @@
  */
 package UI;
 
+import Backend_Files.CurrencyEuro;
+import Backend_Files.CurrencyRupee;
+import Backend_Files.CurrencyUSD;
 import Transaction.Transaction;
 
 /**
@@ -159,8 +162,19 @@ public class WithdrawForm extends javax.swing.JPanel {
         String currency = (String) jComboBox1.getSelectedItem();
         switch (currency){
             case "INR":
-                System.out.println("INR");
-
+                CurrencyRupee inr = new CurrencyRupee();
+                inr.setRate();
+                amt = inr.fromDefault(amt);
+                break;
+            case "EUR":
+                CurrencyEuro euro = new CurrencyEuro();
+                euro.setRate();
+                amt = euro.fromDefault(amt);
+                break;
+            default:
+                CurrencyUSD usd = new CurrencyUSD();
+                usd.setRate();
+                amt = usd.fromDefault(amt);
         }
         transaction.process(accountNo, "Cash", amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();

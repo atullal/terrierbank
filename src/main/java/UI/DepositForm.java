@@ -4,6 +4,9 @@ package UI;/*
  */
 
 import Account.AccountType;
+import Backend_Files.CurrencyEuro;
+import Backend_Files.CurrencyRupee;
+import Backend_Files.CurrencyUSD;
 import Backend_Files.Customer;
 import Transaction.Transaction;
 import User.UserController;
@@ -152,10 +155,26 @@ public class DepositForm extends javax.swing.JPanel {
     // Confirm
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // TODO add your handling code here:]
-        System.out.println(jComboBox1.getSelectedItem());
-        System.out.println(jTextField1.getText());
+        double amt = Double.parseDouble(jTextField1.getText());
+        String currency = (String) jComboBox1.getSelectedItem();
+        switch (currency){
+            case "INR":
+                CurrencyRupee inr = new CurrencyRupee();
+                inr.setRate();
+                amt = inr.toDefault(amt);
+                break;
+            case "EUR":
+                CurrencyEuro euro = new CurrencyEuro();
+                euro.setRate();
+                amt = euro.toDefault(amt);
+                break;
+            default:
+                CurrencyUSD usd = new CurrencyUSD();
+                usd.setRate();
+                amt = usd.toDefault(amt);
+        }
         ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, "");
-        transaction.process("Self", accountNo, Integer.parseInt(jTextField1.getText()));
+        transaction.process("Self", accountNo, amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);

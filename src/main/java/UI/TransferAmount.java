@@ -3,6 +3,9 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Backend_Files.CurrencyEuro;
+import Backend_Files.CurrencyRupee;
+import Backend_Files.CurrencyUSD;
 import Transaction.Transaction;
 
 /**
@@ -122,11 +125,32 @@ public class TransferAmount extends javax.swing.JPanel {
     // Confirm button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        // TODO change jlabel7 to whatever the variable name of the textbox is
+        double amt = Double.parseDouble(jLabel7.getText());
+        String currency = (String) jComboBox1.getSelectedItem();
+        switch (currency){
+            case "INR":
+                CurrencyRupee inr = new CurrencyRupee();
+                inr.setRate();
+                amt = inr.toDefault(amt);
+                break;
+            case "EUR":
+                CurrencyEuro euro = new CurrencyEuro();
+                euro.setRate();
+                amt = euro.toDefault(amt);
+                break;
+            default:
+                CurrencyUSD usd = new CurrencyUSD();
+                usd.setRate();
+                amt = usd.toDefault(amt);
+        }
+        // Transfers money to said account
+        transaction.process(jLabel5.getText(), jLabel6.getText(), amt);
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
-        // Transfers money to said account
-        transaction.process(jLabel5.getText(), jLabel6.getText(), Integer.parseInt(jLabel7.getText()));
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed

@@ -9,11 +9,11 @@ public abstract class CurrencyHandler {
     }
 
     public abstract void setRate();
-    public double toUSD(double amt){
+    public double toDefault(double amt){
         return amt*rate;
     }
 
-    public double fromUSD(double amt){
+    public double fromDefault(double amt){
         return amt/rate;
     }
 
