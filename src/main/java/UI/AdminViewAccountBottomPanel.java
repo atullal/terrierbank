@@ -245,7 +245,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminViewUserProfile addUpdatePanel = new AdminViewUserProfile();
+        AdminViewUserProfile addUpdatePanel = new AdminViewUserProfile(this.customer);
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed

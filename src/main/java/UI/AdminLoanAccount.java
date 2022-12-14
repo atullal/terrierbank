@@ -58,6 +58,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setText(String.valueOf(loan.getRepaymentPeriod()));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setPreferredSize(new java.awt.Dimension(40, 20));
@@ -81,6 +82,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
+        jLabel4.setText(String.valueOf(loan.getAssociatedAccount().getAccountNumber()));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
@@ -97,15 +99,18 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
+        jLabel1.setText(String.valueOf(loan.getPaidAmount()));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
+        jLabel10.setText(String.valueOf(loan.getLoanAmount() - loan.getPaidAmount()));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel10.setSize(new java.awt.Dimension(40, 20));
 
+        jLabel6.setText(loan.getStatus().toString());
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setPreferredSize(new java.awt.Dimension(40, 20));

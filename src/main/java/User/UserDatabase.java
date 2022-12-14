@@ -39,6 +39,31 @@ public class UserDatabase {
         return 0;
     }
 
+    public static Customer getCustomerUsingID(int id) {
+        String statement = "SELECT * FROM USER  WHERE ID="+id+";";
+        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
+        try {
+            if (result.next()) {
+                String  name = result.getString("NAME");
+                String dob  = result.getString("DOB");
+                SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = formatter.parse(dob);
+                String  address = result.getString("ADDRESS");
+                String  idNum = result.getString("IDNUMBER");
+                String  user = result.getString("USERNAME");
+                String  pass = result.getString("PASSWORD");
+                Customer customer = new Customer(id, name, date, address, idNum, user, pass);
+                customer.fetchAccounts();
+                customer.fetchLoans();
+                return customer;
+            }
+        } catch (Exception e) {
+            System.out.println("Cannot find the user");
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public static Customer getCustomer(String userName, String password) {
         String statement = "SELECT * FROM USER  WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
