@@ -37,7 +37,7 @@ public class StockMarket {
 
         //Check if the user has enough amount
         if(secAccnt.getAmount() >= stockValue){
-            secAccnt.setAmount(secAccnt.getAmount() - stockValue);
+            secAccnt.setBal(secAccnt.getAmount() - stockValue);
             addStock(sp);
         }
         else{
@@ -56,7 +56,7 @@ public class StockMarket {
             if(stockPos == stockPositions.get(i).getStockPos()){
                 curValue = stockPositions.get(i).getStock().getMarketValue() * stockPositions.get(i).getNumShares();
                 profit = curValue - stockPositions.get(i).getStockValue();
-                stockPositions.get(i).getAcc().setAmount(stockPositions.get(i).getAcc().getAmount() + profit);
+                stockPositions.get(i).getAcc().setBal(stockPositions.get(i).getAcc().getAmount() + profit);
                 sp = stockPositions.get(i);
                 stockPositions.remove(i);
                 return sp;

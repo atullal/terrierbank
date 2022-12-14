@@ -52,7 +52,7 @@ public abstract class Account implements Model {
         return bal;
     }
 
-    public void setAmount(double bal) {
+    public void setBal(double bal) {
         this.bal = bal;
     }
 

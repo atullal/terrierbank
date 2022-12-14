@@ -182,7 +182,7 @@ public class UserAccount extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        WithdrawForm addUpdatePanel = new WithdrawForm();
+        WithdrawForm addUpdatePanel = new WithdrawForm(Integer.toString(account.getAccountNumber()));
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton3ActionPerformed

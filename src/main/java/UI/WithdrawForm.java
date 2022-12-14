@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Transaction.Transaction;
+
 /**
  *
  * @author saisuryavarshith
@@ -13,8 +15,27 @@ public class WithdrawForm extends javax.swing.JPanel {
     /**
      * Creates new form WithdrawForm
      */
-    public WithdrawForm() {
+    Transaction transaction;
+    String accountNo;
+    public WithdrawForm(String accountNo) {
+        this.accountNo = accountNo;
+        transaction = new Transaction();
+
         initComponents();
+        if (accountNo.startsWith("1")){
+            jLabel4.setText(accountNo);
+            jLabel5.setText("Savings");
+        }
+        else if (accountNo.startsWith("2")){
+
+            jLabel4.setText(accountNo);
+            jLabel5.setText("Checkings");
+        }
+        else {
+
+            jLabel4.setText(accountNo);
+            jLabel5.setText("Security Account");
+        }
     }
 
     /**
@@ -131,29 +152,14 @@ public class WithdrawForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // Withdraw Button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:]
-
+        transaction.process(accountNo, "Cash", Integer.parseInt(jTextField1.getText()));
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
-        // TODO Make account number visible and uneditable
-        String accountNo = "1123456";
-        if (accountNo.startsWith("1")){
 
-            jLabel6.setText(accountNo);
-            jLabel5.setText("Savings");
-        }
-        else if (accountNo.startsWith("2")){
-
-            jLabel6.setText(accountNo);
-            jLabel5.setText("Checkings");
-        }
-        else {
-            
-             jLabel6.setText(accountNo);
-             jLabel5.setText("Security Account");
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -163,8 +169,10 @@ public class WithdrawForm extends javax.swing.JPanel {
         .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
