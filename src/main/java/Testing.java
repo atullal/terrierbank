@@ -18,17 +18,6 @@ public class Testing {
                 StockDatabase.getStocks()) {
             System.out.println(stock);
         }
-        //StockDatabase.createTable();
-        //Create a customer first
-        //Create a savings account
-        //Create a security account
-        //Give it a fucking balance
-        //Create an instance fo stock market
-        //Then Add several stocks to the stock table
-        //Then buy 5 stocks
-        //Then display them
-        //Then sell three of those stocks
-        //Give the profit
 
 
         //SecurityAccount acc = new SecurityAccount()
