@@ -4,6 +4,7 @@ import Account.SecurityAccount;
 import User.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StockMarket {
     private static StockMarket stockMarket;
@@ -31,9 +32,11 @@ public class StockMarket {
 
     //Buy stocks
     public StockPosition buyStock(Stock stock, User user , SecurityAccount secAccnt, int shares){
+        //Get the stock by 
         double stockValue = stock.getMarketValue() * shares;
         int stockPos = stockPositions.size() + 1;
-        StockPosition sp = new StockPosition(stockPos , stock, user , secAccnt , shares);
+        Date date = new Date();
+        StockPosition sp = new StockPosition(stockPos , stock, user , secAccnt ,stock.getMarketValue(), shares, date);
 
         //Check if the user has enough amount
         if(secAccnt.getAmount() >= stockValue){
@@ -48,7 +51,7 @@ public class StockMarket {
         return sp;
     }
 
-    public StockPosition sellStock(int stockPos){
+    public StockPosition sellStock(int stockPos,User user , SecurityAccount secAccnt ){
         StockPosition sp = null;
         Double curValue;
         Double profit;
@@ -56,7 +59,7 @@ public class StockMarket {
             if(stockPos == stockPositions.get(i).getStockPos()){
                 curValue = stockPositions.get(i).getStock().getMarketValue() * stockPositions.get(i).getNumShares();
                 profit = curValue - stockPositions.get(i).getStockValue();
-                stockPositions.get(i).getAcc().setBal(stockPositions.get(i).getAcc().getAmount() + profit);
+                secAccnt.setBal(stockPositions.get(i).getAcc().getAmount() + curValue);
                 sp = stockPositions.get(i);
                 stockPositions.remove(i);
                 return sp;
@@ -88,7 +91,7 @@ public class StockMarket {
     public ArrayList<StockPosition> returnOpenPosition(User user){
         ArrayList<StockPosition> openPositions = new ArrayList<StockPosition>();
         for(int i = 0; i < stockPositions.size() ; i++){
-            if(user.equals(stockPositions.get(i).getUser())){
+            if(user.getId() == stockPositions.get(i).getUser().getId() ){
                 openPositions.add(stockPositions.get(i));
             }
 

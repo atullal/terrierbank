@@ -3,6 +3,8 @@ package Stock;
 import Account.SecurityAccount;
 import User.User;
 
+import java.util.Date;
+
 public class StockPosition {
     //Uniquely identifies this stock
     private int stockPos;
@@ -21,7 +23,9 @@ public class StockPosition {
 
     private double purchasedValue;
 
-    public StockPosition(int stockPos, Stock s, User u, SecurityAccount acc, int numShares ){
+    private Date date;
+
+    public StockPosition(int stockPos, Stock s, User u, SecurityAccount acc, double purchasedValue, int numShares , Date date){
 
         this.stockPos= stockPos;
         this.stock = s;
@@ -29,8 +33,13 @@ public class StockPosition {
         this.secAccnt = acc;
         this.numShares = numShares;
         stockValue = numShares * stock.getMarketValue();
-        purchasedValue = s.getMarketValue();
+        this.purchasedValue = purchasedValue;
+        this.date = date;
 
+    }
+
+    public double getPurchasedValue() {
+        return purchasedValue;
     }
 
     public void setStockValue(double stockValue) {

@@ -11,7 +11,7 @@ public class SecurityAccount extends Account {
         super(customer, accountNumber, AccountType.SECURITY);
         this.savingsAccount = null;
     }
-    SecurityAccount(Customer customer, String savingsAccount, double bal, int accountNumber){
+    public SecurityAccount(Customer customer, String savingsAccount, double bal, int accountNumber){
         super(customer, bal, accountNumber, AccountType.SECURITY);
         this.savingsAccount = savingsAccount;
     }
