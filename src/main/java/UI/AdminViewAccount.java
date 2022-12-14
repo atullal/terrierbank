@@ -1,6 +1,13 @@
 package UI;
 
-import javax.swing.JSplitPane;
+import Account.Account;
+import Admin.AdminController;
+import Backend_Files.Customer;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,6 +27,17 @@ public class AdminViewAccount extends javax.swing.JPanel {
         initComponents();
     }
 
+    private void handleCustomerChange() {
+        Customer selectedCustomer = (Customer) jComboBox1.getSelectedItem();
+        selectedCustomer.fetchAccounts();
+        ArrayList<Account> accounts = selectedCustomer.getAccounts();
+        System.out.println("Available accounts");
+        for (Account account: accounts) {
+            System.out.println(account);
+        }
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,8 +52,8 @@ public class AdminViewAccount extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<Customer>();
+        jComboBox2 = new JComboBox<Account>();
         jPanel1 = new javax.swing.JPanel();
 
         jSplitPane1.setDividerLocation(150);
@@ -54,9 +72,17 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
         jLabel2.setText("USER NAME");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ArrayList<Customer> customers = AdminController.getAllCustomers();
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Customer>(customers.toArray(new Customer[customers.size()])));
+
+        jComboBox1.addActionListener (new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                handleCustomerChange();
+            }
+        });
+
+        handleCustomerChange();
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -117,7 +143,7 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel();
+        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel((Account) jComboBox2.getSelectedItem());
         AdminViewAccount.getSplitPane().setRightComponent(addUpdatePanel);
         
         
@@ -126,8 +152,8 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private JComboBox<Customer> jComboBox1;
+    private JComboBox<Account> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

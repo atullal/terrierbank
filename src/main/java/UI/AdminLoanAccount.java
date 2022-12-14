@@ -9,16 +9,21 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Loan.Loan;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class AdminLoanAccount extends javax.swing.JPanel {
 
+    private Loan loan;
+
     /**
      * Creates new form loanApproval
      */
-    public AdminLoanAccount() {
+    public AdminLoanAccount(Loan loan) {
+        this.loan = loan;
         initComponents();
     }
 
@@ -170,7 +175,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel();
+        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel(loan.getAssociatedAccount());
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

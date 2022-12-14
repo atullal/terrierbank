@@ -7,16 +7,25 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Loan.Loan;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class AdminLoanAccountApproval extends javax.swing.JPanel {
 
+    private Loan loan;
+
     /**
      * Creates new form loanAccApproval
      */
-    public AdminLoanAccountApproval() {
+    public AdminLoanAccountApproval(Loan loan) {
+        this.loan = loan;
         initComponents();
     }
 
@@ -71,6 +80,10 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String date = formatter.format(new Date());
+        jLabel6.setText(date);
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel8.setSize(new java.awt.Dimension(40, 20));
@@ -93,6 +106,7 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
+        jLabel4.setText(loan.getTypeOfLoan().toString());
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
@@ -109,15 +123,18 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
+        jLabel11.setText(String.valueOf(loan.getRepaymentPeriod()));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setSize(new java.awt.Dimension(40, 20));
 
+        jLabel10.setText(String.valueOf(loan.getAssociatedAccount().getAccountNumber()));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel10.setSize(new java.awt.Dimension(40, 20));
 
+        jLabel8.setText(loan.getCollateralType().toString());
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel11.setPreferredSize(new java.awt.Dimension(40, 20));
@@ -194,7 +211,13 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel();
+        System.out.println("Confirm");
+        if((String) jComboBox1.getSelectedItem() == "APPROVE") {
+            loan.approve();
+        } else {
+            loan.deny();
+        }
+        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel(loan.getAssociatedAccount());
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         
@@ -207,7 +230,8 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel();
+        System.out.println("Back");
+        AdminViewAccountBottomPanel addUpdatePanel = new AdminViewAccountBottomPanel(loan.getAssociatedAccount());
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

@@ -61,7 +61,7 @@ public class AccountDatabase {
     }
 
     public static void update(Account account) {
-        System.out.println("Inserting new account - " + account);
+        System.out.println("Updating account - " + account);
         String statement = "UPDATE ACCOUNT SET BALANCE = "+account.getBal()+" WHERE ACCOUNTNUM = "+account.getAccountNumber()+";";
         DatabaseController.getInstance().updateStatement(statement);
     }

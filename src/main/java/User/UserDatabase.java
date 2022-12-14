@@ -2,9 +2,11 @@ package User;
 
 import Backend_Files.Customer;
 import Database.DatabaseController;
+import Stock.Stock;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class UserDatabase {
@@ -37,8 +39,6 @@ public class UserDatabase {
         return 0;
     }
 
-
-
     public static Customer getCustomer(String userName, String password) {
         String statement = "SELECT * FROM USER  WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
@@ -63,5 +63,32 @@ public class UserDatabase {
             System.out.println(e);
         }
         return null;
+    }
+
+    public static ArrayList<Customer> getCustomers() {
+        String statement = "SELECT * FROM USER;";
+        System.out.println(statement);
+        ArrayList<Customer> customers = new ArrayList<>();
+        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
+        try {
+            while (result.next()) {
+                int id = result.getInt("ID");
+                String  name = result.getString("NAME");
+                String dob  = result.getString("DOB");
+                SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = formatter.parse(dob);
+                String  address = result.getString("ADDRESS");
+                String  idNum = result.getString("IDNUMBER");
+                String  user = result.getString("USERNAME");
+                String  pass = result.getString("PASSWORD");
+                Customer customer = new Customer(id, name, date, address, idNum, user, pass);
+
+                customers.add(customer);
+            }
+        } catch (Exception e) {
+            System.out.println("Cannot find the user");
+            System.out.println(e);
+        }
+        return customers;
     }
 }

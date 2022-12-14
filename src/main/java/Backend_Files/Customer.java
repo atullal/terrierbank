@@ -102,4 +102,9 @@ public class Customer extends User {
         }
         return savingAccounts;
     }
+
+    @Override
+    public String toString() {
+        return this.getUserName();
+    }
 }

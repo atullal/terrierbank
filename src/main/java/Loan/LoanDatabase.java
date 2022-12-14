@@ -81,16 +81,10 @@ public class LoanDatabase {
         return loans;
     }
 
-    public static int update(Loan loan) {
-        String statement = "INSERT INTO LOAN (USERID, ACCOUNTNUM, LOANTYPE, COLLATERALTYPE, REPAYMENT, PROOF, STATUS, LOANAMOUNT, PAIDAMOUNT) " +
-                "VALUES ("+loan.getLoaner().getId()+", "+loan.getAssociatedAccount().getAccountNumber()+", '"+loan.getTypeOfLoan()+"', '"+loan.getCollateralType()+"', "+loan.getRepaymentPeriod()+", '"+loan.getProof().getPath()+"', '"+loan.getStatus()+"', "+loan.getLoanAmount()+", "+loan.getPaidAmount()+");";
-        ResultSet result = DatabaseController.getInstance().runStatementWithGeneratedKeys(statement);
-        try {
-            if (result.next()) {
-                return result.getInt(1);
-            }
-        } catch (Exception e) {}
-        return 0;
+    public static void update(Loan loan) {
+
+        String statement = "UPDATE LOAN SET STATUS = '"+loan.getStatus()+"', LOANAMOUNT = "+loan.getLoanAmount()+", PAIDAMOUNT = "+loan.getPaidAmount()+" WHERE LOANID = "+loan.getId()+";";
+        DatabaseController.getInstance().updateStatement(statement);
     }
 
 }

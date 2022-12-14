@@ -60,7 +60,7 @@ public class Loan implements Model {
 
     @Override
     public void update() {
-
+        LoanDatabase.update(this);
     }
 
     @Override
@@ -69,6 +69,16 @@ public class Loan implements Model {
         if(id != 0) {
             this.id = id;
         }
+    }
+
+    public void approve() {
+        this.status = LoanStatus.APPROVED;
+        this.update();
+    }
+
+    public void deny() {
+        this.status = LoanStatus.DENIED;
+        this.update();
     }
 
     @Override
@@ -110,5 +120,9 @@ public class Loan implements Model {
 
     public LoanType getTypeOfLoan() {
         return typeOfLoan;
+    }
+
+    public int getId() {
+        return id;
     }
 }
