@@ -5,17 +5,17 @@ import Database.Model;
 
 public abstract class Account implements Model {
     private Customer customer;
-    private String accountNumber;
+    private int accountNumber;
     private AccountType accountType;
     private double bal;
 
-    public Account(Customer customer, String accountNumber, AccountType accountType){
+    public Account(Customer customer, int accountNumber, AccountType accountType){
         this.customer = customer;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.bal = 0;
     }
-    public Account(Customer customer, double bal, String accountNumber, AccountType accountType){
+    public Account(Customer customer, double bal, int accountNumber, AccountType accountType){
         this.customer = customer;
         this.bal = bal;
         this.accountNumber = accountNumber;
@@ -33,10 +33,10 @@ public abstract class Account implements Model {
 
     @Override
     public String toString() {
-        return getAccountNumber();
+        return String.valueOf(getAccountNumber());
     }
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
@@ -54,5 +54,10 @@ public abstract class Account implements Model {
 
     public void setAmount(double bal) {
         this.bal = bal;
+    }
+
+    @Override
+    public void update() {
+        AccountDatabase.update(this);
     }
 }

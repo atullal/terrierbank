@@ -149,7 +149,7 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 //        System.out.println(jComboBox1.getSelectedItem());
 //        System.out.println(jTextField1.getText());
 //        System.out.println(jComboBox2.getSelectedItem());
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(accountNo, accountType, Integer.parseInt(jTextField1.getText()),(String) jComboBox2.getSelectedItem());
+        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, Integer.parseInt(jTextField1.getText()),(String) jComboBox2.getSelectedItem());
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);

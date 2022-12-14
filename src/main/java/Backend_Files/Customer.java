@@ -4,6 +4,8 @@ import Account.Account;
 import Account.AccountFactory;
 import Account.AccountType;
 import Account.AccountDatabase;
+import Loan.Loan;
+import Loan.LoanDatabase;
 import User.User;
 
 import java.util.ArrayList;
@@ -11,17 +13,20 @@ import java.util.Date;
 
 public class Customer extends User {
     ArrayList<Account> accounts;
+    ArrayList<Loan> loans;
     public Customer(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
         super(name, dateOfBirth, address, idNumber, userName, password);
         this.accounts = new ArrayList<Account>();
+        this.loans = new ArrayList<>();
     }
 
     public Customer(int id, String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
         super(id, name, dateOfBirth, address, idNumber, userName, password);
         this.accounts = new ArrayList<Account>();
+        this.loans = new ArrayList<>();
     }
 
-    public void createAccount(String accountNo, AccountType accountType, int bal, String savingsAccNo){
+    public void createAccount(int accountNo, AccountType accountType, int bal, String savingsAccNo){
         // TODO Add
         AccountFactory accountFactory = new AccountFactory();
         Account account;
@@ -50,6 +55,17 @@ public class Customer extends User {
         // TODO Add account to DB
     }
 
+    public void addLoan(Loan loan) {
+        this.loans.add(loan);
+    }
+
+    public void fetchLoans() {
+        ArrayList<Loan> fetchedLoans = LoanDatabase.getLoans(this);
+        if(fetchedLoans != null) {
+            this.loans = fetchedLoans;
+        }
+    }
+
     public void fetchAccounts() {
         ArrayList<Account> fetchedAccounts = AccountDatabase.getAccounts(this);
         if(fetchedAccounts != null) {
@@ -60,7 +76,11 @@ public class Customer extends User {
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
-    
+
+    public ArrayList<Loan> getLoans() {
+        return loans;
+    }
+
     public ArrayList<Account> getCheckingAccounts() {
         ArrayList<Account> checkingAccounts = new ArrayList<>();
         for (Account account :

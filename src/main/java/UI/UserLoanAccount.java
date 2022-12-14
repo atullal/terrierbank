@@ -3,16 +3,20 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Loan.Loan;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class UserLoanAccount extends javax.swing.JPanel {
 
+    private Loan loan;
     /**
      * Creates new form loanAcC
      */
-    public UserLoanAccount() {
+    public UserLoanAccount(Loan loan) {
+        this.loan = loan;
         initComponents();
     }
 
@@ -52,11 +56,12 @@ public class UserLoanAccount extends javax.swing.JPanel {
         jButton2.setText("REFRESH");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(loan.toString());
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("ACCOUNT NUMBER");
+        jLabel2.setText("LOAN ID");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel2.setInheritsPopupMenu(false);
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 30));
@@ -69,6 +74,7 @@ public class UserLoanAccount extends javax.swing.JPanel {
         jLabel3.setSize(new java.awt.Dimension(40, 20));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(loan.getStatus().toString());
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
 
@@ -79,6 +85,7 @@ public class UserLoanAccount extends javax.swing.JPanel {
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText(String.valueOf(loan.getRepaymentPeriod()));
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel6.setSize(new java.awt.Dimension(40, 20));
@@ -90,6 +97,7 @@ public class UserLoanAccount extends javax.swing.JPanel {
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText(String.valueOf(loan.getLoanAmount() - loan.getPaidAmount()));
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel8.setSize(new java.awt.Dimension(40, 20));
@@ -100,6 +108,7 @@ public class UserLoanAccount extends javax.swing.JPanel {
         jLabel9.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText(String.valueOf(loan.getPaidAmount()));
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel10.setSize(new java.awt.Dimension(40, 20));
@@ -168,7 +177,7 @@ public class UserLoanAccount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        PayLoanAmount addUpdatePanel = new PayLoanAmount();
+        PayLoanAmount addUpdatePanel = new PayLoanAmount(loan);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed

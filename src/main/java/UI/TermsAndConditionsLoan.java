@@ -3,16 +3,34 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Loan.CollateralType;
+import Loan.Loan;
+import Loan.LoanController;
+import Loan.LoanType;
+
+import java.io.File;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class TermsAndConditionsLoan extends javax.swing.JPanel {
 
+    private Account account;
+    private LoanType loanType;
+    private CollateralType collateralType;
+    private int repayment;
+    private File proof;
     /**
      * Creates new form insloan
      */
-    public TermsAndConditionsLoan() {
+    public TermsAndConditionsLoan(Account account, LoanType loanType, CollateralType collateralType, int repayment, File proof) {
+        this.account = account;
+        this.loanType = loanType;
+        this.collateralType = collateralType;
+        this.repayment = repayment;
+        this.proof = proof;
         initComponents();
     }
 
@@ -77,7 +95,9 @@ public class TermsAndConditionsLoan extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        UserLoanAccount addUpdatePanel = new UserLoanAccount();
+
+        Loan createdLoan = LoanController.getInstance().newLoan(account, loanType, collateralType, repayment, proof);
+        UserLoanAccount addUpdatePanel = new UserLoanAccount(createdLoan);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         
@@ -86,7 +106,8 @@ public class TermsAndConditionsLoan extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        UserLoanAccount addUpdatePanel = new UserLoanAccount();
+
+        TakeLoan addUpdatePanel = new TakeLoan();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

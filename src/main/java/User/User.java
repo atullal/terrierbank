@@ -36,7 +36,7 @@ public abstract class User implements Model {
 
     @Override
     public void save() {
-        int id = UserDatabase.insertUser(this.name, this.dateOfBirth, this.address, this.idNumber, this.userName, this.password);
+        int id = UserDatabase.insert(this);
         this.id = id;
     }
 
@@ -51,6 +51,11 @@ public abstract class User implements Model {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public void update() {
+
     }
 
     public String getName() {

@@ -5,6 +5,7 @@ package UI;/*
 
 import Account.Account;
 import Backend_Files.Customer;
+import Loan.Loan;
 import User.UserController;
 
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class UserViewAccounts extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new JComboBox<Account>();
         jComboBox2 = new JComboBox<Account>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox3 = new JComboBox<Loan>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -78,12 +79,13 @@ public class UserViewAccounts extends javax.swing.JPanel {
 
         ArrayList<Account> savingsAccounts = ((Customer) UserController.getInstance().getLoggedInUser()).getSavingAccounts();
         ArrayList<Account> checkingAccounts = ((Customer) UserController.getInstance().getLoggedInUser()).getCheckingAccounts();
+        ArrayList<Loan> loans = ((Customer) UserController.getInstance().getLoggedInUser()).getLoans();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Account>(savingsAccounts.toArray(new Account[savingsAccounts.size()])));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(checkingAccounts.toArray(new Account[checkingAccounts.size()])));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<Loan>(loans.toArray(new Loan[loans.size()])));
 
         jLabel2.setText("SAVINGS ACCOUNT");
 
@@ -161,7 +163,7 @@ public class UserViewAccounts extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        UserLoanAccount addUpdatePanel = new UserLoanAccount();
+        UserLoanAccount addUpdatePanel = new UserLoanAccount((Loan) jComboBox3.getSelectedItem());
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -185,7 +187,7 @@ public class UserViewAccounts extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private JComboBox<Account> jComboBox1;
     private JComboBox<Account> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private JComboBox<Loan> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

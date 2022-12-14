@@ -37,7 +37,7 @@ public class AccountDatabase {
                 switch (type) {
                     case CHECKING:
                     case SAVINGS:
-                        accounts.add(accountFactory.makeAccount(customer, type, balance, String.valueOf(accountNum)));
+                        accounts.add(accountFactory.makeAccount(customer, type, balance, accountNum));
                         break;
                     case SECURITY:
                         // TODO: Add security account
@@ -55,12 +55,14 @@ public class AccountDatabase {
 
     public static void insert(Account account) {
         System.out.println("Inserting new account - " + account);
-        String statement = "UPDATE ACCOUNT (ACCOUNTNUM,USERID,ACCOUNTTYPE,BALANCE) " +
+        String statement = "INSERT INTO ACCOUNT (ACCOUNTNUM,USERID,ACCOUNTTYPE,BALANCE) " +
                 "VALUES ("+account.getAccountNumber()+", "+account.getCustomer().getId()+", '"+account.getAccountType()+"', "+account.getBal()+");";
         DatabaseController.getInstance().updateStatement(statement);
     }
 
     public static void update(Account account) {
-
+        System.out.println("Inserting new account - " + account);
+        String statement = "UPDATE ACCOUNT SET BALANCE = "+account.getBal()+" WHERE ACCOUNTNUM = "+account.getAccountNumber()+";";
+        DatabaseController.getInstance().updateStatement(statement);
     }
 }

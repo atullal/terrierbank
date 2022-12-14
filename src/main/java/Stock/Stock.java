@@ -42,6 +42,12 @@ public class Stock implements Model {
         this.marketValue = marketValue;
     }
 
+
+    @Override
+    public void update() {
+
+    }
+
     @Override
     public void save() {
 

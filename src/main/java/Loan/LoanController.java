@@ -1,6 +1,7 @@
 package Loan;
 
 import Account.Account;
+import Backend_Files.Customer;
 import User.UserController;
 
 import java.io.File;
@@ -17,11 +18,11 @@ public class LoanController {
         return instance;
     }
 
-    public boolean newLoan(String accountNumber, LoanType typeOfLoan, CollateralType collateralType, int repaymentPeriod, File proof) {
-        Account selectedAccount = null;
-        Loan loan = new Loan(UserController.getInstance().getLoggedInUser(), selectedAccount, typeOfLoan, collateralType, repaymentPeriod, proof);
+    public Loan newLoan(Account selectedAccount, LoanType typeOfLoan, CollateralType collateralType, int repaymentPeriod, File proof) {
+        Loan loan = new Loan(0, UserController.getInstance().getLoggedInUser(), selectedAccount, typeOfLoan, collateralType, repaymentPeriod, proof);
         loan.save();
+        ((Customer) UserController.getInstance().getLoggedInUser()).addLoan(loan);
         System.out.println(loan);
-        return false;
+        return loan;
     }
 }

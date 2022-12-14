@@ -23,11 +23,11 @@ public class UserDatabase {
         DatabaseController.getInstance().updateStatement(statement);
     }
 
-    public static int insertUser(String name, Date dob, String address, String idNumber, String userName, String password) {
+    public static int insert(User user) {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        String date = formatter.format(dob);
+        String date = formatter.format(user.getDateOfBirth());
         String statement = "INSERT INTO USER (NAME,DOB,ADDRESS,IDNUMBER, USERNAME, PASSWORD) " +
-                "VALUES ('"+name+"', '"+date+"', '"+address+"', '"+idNumber+"', '"+userName+"', '"+password+"' );";
+                "VALUES ('"+user.getName()+"', '"+date+"', '"+user.getAddress()+"', '"+user.getIdNumber()+"', '"+user.getUserName()+"', '"+user.getPassword()+"' );";
         ResultSet result = DatabaseController.getInstance().runStatementWithGeneratedKeys(statement);
         try {
             if (result.next()) {
@@ -36,6 +36,8 @@ public class UserDatabase {
         } catch (Exception e) {}
         return 0;
     }
+
+
 
     public static Customer getCustomer(String userName, String password) {
         String statement = "SELECT * FROM USER  WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
@@ -53,6 +55,7 @@ public class UserDatabase {
                 String  pass = result.getString("PASSWORD");
                 Customer customer = new Customer(id, name, date, address, idNum, user, pass);
                 customer.fetchAccounts();
+                customer.fetchLoans();
                 return customer;
             }
         } catch (Exception e) {

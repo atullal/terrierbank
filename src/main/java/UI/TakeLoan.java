@@ -203,9 +203,9 @@ public class TakeLoan extends javax.swing.JPanel {
         System.out.println(jComboBox2.getSelectedItem());
         System.out.println(selectedFile);
         if (jComboBox3.getSelectedItem() != null) {
-            LoanController.getInstance().newLoan(jComboBox3.getSelectedItem().toString(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
+            LoanController.getInstance().newLoan((Account) jComboBox3.getSelectedItem(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
         }
-        TermsAndConditionsLoan addUpdatePanel = new TermsAndConditionsLoan();
+        TermsAndConditionsLoan addUpdatePanel = new TermsAndConditionsLoan((Account) jComboBox3.getSelectedItem(), (LoanType) jComboBox1.getSelectedItem(), (CollateralType) jComboBox2.getSelectedItem(), Integer.parseInt(jComboBox4.getSelectedItem().toString()), selectedFile);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

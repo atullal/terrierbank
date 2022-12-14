@@ -3,16 +3,21 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Loan.Loan;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class PayLoanAmount extends javax.swing.JPanel {
 
+    private Loan loan;
+
     /**
      * Creates new form payloanAmt
      */
-    public PayLoanAmount() {
+    public PayLoanAmount(Loan loan) {
+        this.loan = loan;
         initComponents();
     }
 
@@ -105,7 +110,7 @@ public class PayLoanAmount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        UserLoanAccount addUpdatePanel = new UserLoanAccount();
+        UserLoanAccount addUpdatePanel = new UserLoanAccount(loan);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
