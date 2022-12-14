@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,6 +26,8 @@ public class AdminViewAccount extends javax.swing.JPanel {
      */
     public AdminViewAccount() {
         initComponents();
+        AutoCompleteDecorator.decorate(jComboBox1);
+        AutoCompleteDecorator.decorate(jComboBox2);
     }
 
     private void handleCustomerChange() {
