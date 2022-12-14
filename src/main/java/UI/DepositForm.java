@@ -5,6 +5,7 @@ package UI;/*
 
 import Account.AccountType;
 import Backend_Files.Customer;
+import Transaction.Transaction;
 import User.UserController;
 
 /**
@@ -18,6 +19,7 @@ public class DepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
+    Transaction transaction;
     public DepositForm() {
         initComponents();
     }
@@ -25,6 +27,7 @@ public class DepositForm extends javax.swing.JPanel {
     public DepositForm(String accountNo, AccountType accountType) {
         this.accountNo = accountNo;
         this.accountType = accountType;
+        this.transaction = new Transaction();
         initComponents();
     }
 
@@ -146,12 +149,13 @@ public class DepositForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    // Confirm
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // TODO add your handling code here:]
         System.out.println(jComboBox1.getSelectedItem());
         System.out.println(jTextField1.getText());
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, Integer.parseInt(jTextField1.getText()), "");
+        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, "");
+        transaction.process("Self", accountNo, Integer.parseInt(jTextField1.getText()));
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
