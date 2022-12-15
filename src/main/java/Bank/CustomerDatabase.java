@@ -58,7 +58,7 @@ public class CustomerDatabase {
     }
 
     public static Customer getCustomer(String userName, String password) {
-        String statement = "SELECT * FROM CUSTOMER  WHERE CUSTOMERNAME='"+userName+"' AND PASSWORD='"+password+"';";
+        String statement = "SELECT * FROM CUSTOMER INNER JOIN USER ON USER.ID = CUSTOMER.USERID WHERE USERNAME='"+userName+"' AND PASSWORD='"+password+"';";
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {
             if (result.next()) {
