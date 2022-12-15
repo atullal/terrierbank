@@ -34,7 +34,7 @@ public class CustomerDatabase {
     }
 
     public static Customer getCustomerUsingID(int id) {
-        String statement = "SELECT * FROM CUSTOMER  WHERE USERID="+id+";";
+        String statement = "SELECT * FROM CUSTOMER WHERE USERID="+id+";";
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {
             if (result.next()) {

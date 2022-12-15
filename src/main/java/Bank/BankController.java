@@ -17,6 +17,13 @@ public class BankController {
         return instance;
     }
 
+    public boolean isBankManagerInitialized() {
+        if(BankManagerDatabase.getBankManager("admin", "12345") != null) {
+            return true;
+        }
+        return false;
+    }
+
 
     public void createBankManagerAccount(BankManager manager) {
         AccountDatabase.insert(new BankManagerAccount(manager, 200000, 999999999));

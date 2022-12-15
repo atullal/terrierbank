@@ -26,8 +26,10 @@ public class Main {
     }
 
     private static void initializeApplication() {
-        BankManager manager = BankController.getInstance().createBankManager();
-        manager.save();
-        BankController.getInstance().createBankManagerAccount(manager);
+        if(!BankController.getInstance().isBankManagerInitialized()) {
+            BankManager manager = BankController.getInstance().createBankManager();
+            manager.save();
+            BankController.getInstance().createBankManagerAccount(manager);
+        }
     }
 }

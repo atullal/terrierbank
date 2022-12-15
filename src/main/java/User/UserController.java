@@ -1,5 +1,7 @@
 package User;
 
+import Bank.BankManager;
+import Bank.BankManagerDatabase;
 import Bank.Customer;
 import Bank.CustomerDatabase;
 
@@ -10,9 +12,11 @@ public class UserController {
 
     private User loggedInUser;
     private boolean isLoggedIn;
+    private boolean isAdmin;
 
     private UserController() {
         this.isLoggedIn = false;
+        this.isAdmin = false;
     }
 
     public static UserController getInstance() {
@@ -33,9 +37,22 @@ public class UserController {
         return false;
     }
 
+    public boolean adminLogin(String username, String password) {
+        BankManager manager = BankManagerDatabase.getBankManager(username, password);
+        if(manager != null) {
+            System.out.println(manager);
+            loggedInUser = manager;
+            isLoggedIn = true;
+            isAdmin = true;
+            return true;
+        }
+        return false;
+    }
+
     public void logout() {
         loggedInUser = null;
         isLoggedIn = false;
+        isAdmin = false;
     }
 
     public User getLoggedInUser() {
