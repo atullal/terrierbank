@@ -64,6 +64,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         });
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText(String.valueOf(loan.getRepaymentPeriod()));
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setBorder(new javax.swing.border.MatteBorder(null));
@@ -89,6 +90,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText(String.valueOf(loan.getAssociatedAccount().getAccountNumber()));
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
@@ -107,12 +109,14 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText(String.valueOf(loan.getPaidAmount()));
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText(String.valueOf(loan.getLoanAmount() - loan.getPaidAmount()));
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setBorder(new javax.swing.border.MatteBorder(null));
@@ -120,6 +124,7 @@ public class AdminLoanAccount extends javax.swing.JPanel {
         jLabel10.setSize(new java.awt.Dimension(40, 20));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText(loan.getStatus().toString());
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setBorder(new javax.swing.border.MatteBorder(null));

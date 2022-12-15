@@ -2,12 +2,11 @@ package Transaction;
 
 import Account.Account;
 import Account.AccountDatabase;
-import Backend_Files.Customer;
+import Bank.Customer;
 import Database.DatabaseController;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TransactionDatabase {
 

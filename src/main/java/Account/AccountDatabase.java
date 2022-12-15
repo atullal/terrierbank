@@ -1,13 +1,11 @@
 package Account;
 
-import Backend_Files.Customer;
+import Bank.Customer;
+import Bank.CustomerDatabase;
 import Database.DatabaseController;
-import User.UserDatabase;
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AccountDatabase {
 
@@ -27,7 +25,7 @@ public class AccountDatabase {
         try {
             while (result.next()) {
                 int  userId = result.getInt("USERID");
-                Customer customer = UserDatabase.getCustomerUsingID(userId);
+                Customer customer = CustomerDatabase.getCustomerUsingID(userId);
                 customer.fetchLoans();
                 customer.fetchAccounts();
                 String accounttype  = result.getString("ACCOUNTTYPE");
@@ -92,7 +90,7 @@ public class AccountDatabase {
     public static void insert(Account account) {
         System.out.println("Inserting new account - " + account);
         String statement = "INSERT INTO ACCOUNT (ACCOUNTNUM,USERID,ACCOUNTTYPE,BALANCE) " +
-                "VALUES ("+account.getAccountNumber()+", "+account.getCustomer().getId()+", '"+account.getAccountType()+"', "+account.getBal()+");";
+                "VALUES ("+account.getAccountNumber()+", "+account.getUser().getId()+", '"+account.getAccountType()+"', "+account.getBal()+");";
         DatabaseController.getInstance().updateStatement(statement);
     }
 

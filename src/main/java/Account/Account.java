@@ -1,27 +1,27 @@
 package Account;
 
-import Backend_Files.Customer;
 import Transaction.TransactionAssociated;
 import Database.Model;
 import Transaction.Transaction;
 import Transaction.TransactionDatabase;
+import User.User;
 
 import java.util.ArrayList;
 
 public abstract class Account implements Model, TransactionAssociated {
-    private Customer customer;
+    private User user;
     private int accountNumber;
     private AccountType accountType;
     private double bal;
 
-    public Account(Customer customer, int accountNumber, AccountType accountType){
-        this.customer = customer;
+    public Account(User user, int accountNumber, AccountType accountType){
+        this.user = user;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.bal = 0;
     }
-    public Account(Customer customer, double bal, int accountNumber, AccountType accountType){
-        this.customer = customer;
+    public Account(User user, double bal, int accountNumber, AccountType accountType){
+        this.user = user;
         this.bal = bal;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
@@ -49,8 +49,8 @@ public abstract class Account implements Model, TransactionAssociated {
         return accountType;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
     public double getBal() {

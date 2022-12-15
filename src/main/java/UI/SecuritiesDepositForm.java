@@ -6,7 +6,7 @@ package UI;
 
 import Account.Account;
 import Account.AccountType;
-import Backend_Files.Customer;
+import Bank.Customer;
 import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;

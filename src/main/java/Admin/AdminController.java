@@ -1,12 +1,12 @@
 package Admin;
 
-import Backend_Files.Customer;
-import User.UserDatabase;
+import Bank.Customer;
+import Bank.CustomerDatabase;
 
 import java.util.ArrayList;
 
 public class AdminController {
     public static ArrayList<Customer> getAllCustomers() {
-        return UserDatabase.getCustomers();
+        return CustomerDatabase.getCustomers();
     }
 }

@@ -1,6 +1,6 @@
 package Account;
 
-import Backend_Files.Customer;
+import Bank.Customer;
 
 public class SavingsAccount extends Account{
     public SavingsAccount(Customer customer, double bal, int accountNo){

@@ -4,8 +4,7 @@ package UI;/*
  */
 
 import Account.Account;
-import Backend_Files.BankManager;
-import Backend_Files.Customer;
+import Bank.Customer;
 import Loan.Loan;
 import Loan.LoanStatus;
 
@@ -25,7 +24,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
      */
     public AdminViewAccountBottomPanel(Account account) {
         this.account = account;
-        this.customer = account.getCustomer();
+        this.customer = (Customer) account.getUser();
         this.customer.fetchLoans();
         initComponents();
     }
@@ -50,10 +49,10 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<Loan>();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<Loan>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -93,6 +92,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
         jLabel2.setSize(new java.awt.Dimension(40, 20));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(String.valueOf(account.getAccountNumber()));
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
 
@@ -103,6 +103,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
         jLabel3.setSize(new java.awt.Dimension(40, 20));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(account.getAccountType().toString());
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
 
@@ -113,13 +114,25 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText(String.valueOf(account.getBal()));
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel6.setSize(new java.awt.Dimension(40, 20));
 
         jLabel7.setText("LOAN ACCOUNTS");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ArrayList<Loan> allLoans = customer.getLoans();
+        ArrayList<Loan> pendingLoans = new ArrayList<>();
+        ArrayList<Loan> approvedLoans = new ArrayList<>();
+        for (Loan loan: allLoans) {
+            if(loan.getStatus() == LoanStatus.SUBMITTED) {
+                pendingLoans.add(loan);
+            } else {
+                approvedLoans.add(loan);
+            }
+        }
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Loan>(approvedLoans.toArray(new Loan[approvedLoans.size()])));
 
         jButton1.setText("USER PROFILE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +143,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
 
         jLabel8.setText("LOAN APPLICATION");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Loan>(pendingLoans.toArray(new Loan[pendingLoans.size()])));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -212,9 +225,9 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
-        AdminViewAccount.getSplitPane()
-                .setRightComponent(addUpdatePanel);
+//        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
+//        AdminViewAccount.getSplitPane()
+//                .setRightComponent(addUpdatePanel);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -247,8 +260,8 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private JComboBox<Loan> jComboBox1;
+    private JComboBox<Loan> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

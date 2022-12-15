@@ -8,7 +8,8 @@ import java.util.Map;
 public enum AccountType {
     CHECKING("Checking"),
     SAVINGS("Savings"),
-    SECURITY("Security");
+    SECURITY("Security"),
+    MANAGER("Manager");
 
     private final String text;
 

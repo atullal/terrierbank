@@ -1,6 +1,6 @@
 package Account;
 
-import Backend_Files.Customer;
+import Bank.Customer;
 
 public class SecurityAccount extends Account {
     private double bal;

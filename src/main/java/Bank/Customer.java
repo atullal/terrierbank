@@ -1,4 +1,4 @@
-package Backend_Files;
+package Bank;
 
 import Account.Account;
 import Account.AccountFactory;
@@ -15,16 +15,30 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Customer extends User implements TransactionAssociated {
+
+    String name;
+    Date dateOfBirth;
+    String address;
+    String idNumber;
+
     ArrayList<Account> accounts;
     ArrayList<Loan> loans;
     public Customer(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
-        super(name, dateOfBirth, address, idNumber, userName, password);
+        super(userName, password);
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.idNumber = idNumber;
         this.accounts = new ArrayList<Account>();
         this.loans = new ArrayList<>();
     }
 
     public Customer(int id, String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
-        super(id, name, dateOfBirth, address, idNumber, userName, password);
+        super(id, userName, password);
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.idNumber = idNumber;
         this.accounts = new ArrayList<Account>();
         this.loans = new ArrayList<>();
     }
@@ -106,6 +120,22 @@ public class Customer extends User implements TransactionAssociated {
         return savingAccounts;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
     @Override
     public String toString() {
         return this.getUserName();
@@ -114,5 +144,16 @@ public class Customer extends User implements TransactionAssociated {
     @Override
     public ArrayList<Transaction> getTransactions() {
         return TransactionDatabase.getTransactions(this);
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void save() {
+        int id = CustomerDatabase.insert(this);
+        this.setId(id);
     }
 }

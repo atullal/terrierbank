@@ -1,7 +1,7 @@
 package Loan;
 
 import Account.Account;
-import Backend_Files.Customer;
+import Bank.Customer;
 import Database.DatabaseController;
 
 import java.io.File;

@@ -1,14 +1,10 @@
 package UI;
 
 import Account.Account;
-import Backend_Files.Customer;
 import Loan.CollateralType;
-import Loan.LoanController;
 import Loan.LoanType;
-import User.UserController;
 
 import java.io.File;
-import java.util.ArrayList;
 import javax.swing.*;
 
 

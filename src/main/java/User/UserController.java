@@ -1,13 +1,14 @@
 package User;
 
-import Backend_Files.Customer;
+import Bank.Customer;
+import Bank.CustomerDatabase;
 
 import java.util.Date;
 
 public class UserController {
     private static UserController instance = null;
 
-    private Customer loggedInUser;
+    private User loggedInUser;
     private boolean isLoggedIn;
 
     private UserController() {
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     public boolean customerLogin(String username, String password) {
-        Customer user = UserDatabase.getCustomer(username, password);
+        Customer user = CustomerDatabase.getCustomer(username, password);
         if(user != null) {
             System.out.println(user);
             loggedInUser = user;
@@ -37,7 +38,7 @@ public class UserController {
         isLoggedIn = false;
     }
 
-    public Customer getLoggedInUser() {
+    public User getLoggedInUser() {
         return loggedInUser;
     }
 

@@ -88,6 +88,7 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText(loan.getCollateralType().toString());
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel8.setSize(new java.awt.Dimension(40, 20));
@@ -111,6 +112,7 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(loan.getTypeOfLoan().toString());
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
 
@@ -127,15 +129,20 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String date = formatter.format(new Date());
+        jLabel6.setText(date);
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setSize(new java.awt.Dimension(40, 20));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText(String.valueOf(loan.getAssociatedAccount().getAccountNumber()));
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel10.setSize(new java.awt.Dimension(40, 20));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText(String.valueOf(loan.getRepaymentPeriod()));
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel11.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel11.setSize(new java.awt.Dimension(40, 20));

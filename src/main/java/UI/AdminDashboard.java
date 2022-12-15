@@ -5,7 +5,6 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import Backend_Files.BankManager;
 import javax.swing.JSplitPane;
 
 /**

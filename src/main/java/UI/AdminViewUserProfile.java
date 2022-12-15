@@ -5,11 +5,7 @@
 package UI;
 
 import Account.Account;
-import Backend_Files.Customer;
-import User.UserController;
-
-import javax.swing.*;
-import java.util.ArrayList;
+import Bank.Customer;
 
 /**
  *

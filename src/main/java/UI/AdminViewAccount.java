@@ -2,7 +2,7 @@ package UI;
 
 import Account.Account;
 import Admin.AdminController;
-import Backend_Files.Customer;
+import Bank.Customer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -55,8 +55,8 @@ public class AdminViewAccount extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<Customer>();
+        jComboBox2 = new JComboBox<Account>();
         jPanel1 = new javax.swing.JPanel();
 
         jSplitPane1.setDividerLocation(150);
@@ -77,19 +77,17 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
         jLabel2.setText("USER NAME");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        ArrayList<Customer> customers = AdminController.getAllCustomers();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Customer>(customers.toArray(new Customer[customers.size()])));
+
+        jComboBox1.addActionListener (new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                handleCustomerChange();
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
+        handleCustomerChange();
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -161,8 +159,8 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private JComboBox<Customer> jComboBox1;
+    private JComboBox<Account> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -2,7 +2,7 @@ import Account.SavingsAccount;
 import Account.SecurityAccount;
 import Stock.Stock;
 import Stock.StockDatabase;
-import Backend_Files.Customer;
+import Bank.Customer;
 import Stock.StockMarket;
 import Stock.StockPosition;
 import Stock.StockPositionDatabase;
