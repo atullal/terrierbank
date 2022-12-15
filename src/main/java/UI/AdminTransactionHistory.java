@@ -40,34 +40,32 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        ArrayList<Transaction> transactions = associated.getTransactions();
-        String[][] transactionData = new String[transactions.size()][6];
-        double totalProfit = 0;
-        int totalTransaction = 0;
-        for (int i = 0; i < transactions.size() ; i++) {
-            Transaction transaction = transactions.get(i);
-            transactionData[i][0] = transaction.getDate();
-            transactionData[i][1] = transaction.getTime();
-            if(transaction.getSender() != null) {
-                transactionData[i][2] = String.valueOf(transaction.getSender().getAccountNumber());
-            } else {
-                transactionData[i][2] = "Self";
-            }
 
-            if(transaction.getReceiver() != null) {
-                transactionData[i][3] = String.valueOf(transaction.getReceiver().getAccountNumber());
-            } else {
-                transactionData[i][3] = "Cash";
-            }
+        setBackground(new java.awt.Color(255, 255, 255));
 
-            transactionData[i][4] = String.valueOf(transaction.getAmount());
-            transactionData[i][5] = String.valueOf(transaction.getAmount());
-
-            totalProfit = totalProfit + transaction.getAmount() - transaction.getAmount();
-            totalTransaction = totalTransaction + 1;
-        }
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                transactionData,
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
             new String [] {
                 "DATE", "TIME", "FROM", "TO", "AMOUNT SENT", "AMOUNT RECIEVED"
             }
@@ -83,9 +81,6 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("TOTAL PROFIT");
-
-        jLabel2.setText(String.valueOf(totalProfit));
-        jLabel3.setText(String.valueOf(totalTransaction));
 
         jLabel4.setText("TOTAL TRANSACTIONS");
 
@@ -137,9 +132,9 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
@@ -152,7 +147,7 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.out.println("Button clicked");
         AdminDailyReport addUpdatePanel = new AdminDailyReport();
-        AdminViewAccount.getSplitPane()
+        AdminDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
