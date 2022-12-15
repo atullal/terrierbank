@@ -1,17 +1,15 @@
 package Backend_Files;
 
-public class CurrencyUSD extends CurrencyHandler{
+public class CurrencyUSD implements CurrencyStratergy{
     @Override
-    public void setRate() {
+    public double getRate(String defaultCurrency) {
         switch (defaultCurrency){
             case "INR":
-                rate = Constants.usd_inrRate;
-                break;
+                return Constants.usd_inrRate;
             case "EUR":
-                rate = Constants.usd_euroRate;
-                break;
+                return Constants.usd_euroRate;
             default:
-                rate = 1;
+                return 1;
         }
     }
 }

@@ -5,10 +5,7 @@ package UI;/*
 
 import Account.Account;
 import Account.AccountDatabase;
-import Backend_Files.CurrencyEuro;
-import Backend_Files.CurrencyRupee;
-import Backend_Files.CurrencyUSD;
-import Backend_Files.Customer;
+import Backend_Files.*;
 import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;
@@ -136,22 +133,8 @@ public class TransferAmount extends javax.swing.JPanel {
         // TODO change jlabel7 to whatever the variable name of the textbox is
         double amt = Double.parseDouble(jTextField4.getText());
         String currency = (String) jComboBox1.getSelectedItem();
-        switch (currency){
-            case "INR":
-                CurrencyRupee inr = new CurrencyRupee();
-                inr.setRate();
-                amt = inr.convert(amt);
-                break;
-            case "EUR":
-                CurrencyEuro euro = new CurrencyEuro();
-                euro.setRate();
-                amt = euro.convert(amt);
-                break;
-            default:
-                CurrencyUSD usd = new CurrencyUSD();
-                usd.setRate();
-                amt = usd.convert(amt);
-        }
+        CurrencyHandler currencyHandler = new CurrencyHandler(currency);
+        amt = currencyHandler.convert(amt);
         // Transfers money to said account
         Account customerAccount = null;
         for (Account account :

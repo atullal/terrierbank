@@ -5,10 +5,7 @@ package UI;/*
 
 import Account.Account;
 import Account.AccountType;
-import Backend_Files.CurrencyEuro;
-import Backend_Files.CurrencyRupee;
-import Backend_Files.CurrencyUSD;
-import Backend_Files.Customer;
+import Backend_Files.*;
 import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;
@@ -155,22 +152,9 @@ public class DepositForm extends javax.swing.JPanel {
          // TODO add your handling code here:]
         double amt = Double.parseDouble(jTextField1.getText());
         String currency = (String) jComboBox1.getSelectedItem();
-        switch (currency){
-            case "INR":
-                CurrencyRupee inr = new CurrencyRupee();
-                inr.setRate();
-                amt = inr.convert(amt);
-                break;
-            case "EUR":
-                CurrencyEuro euro = new CurrencyEuro();
-                euro.setRate();
-                amt = euro.convert(amt);
-                break;
-            default:
-                CurrencyUSD usd = new CurrencyUSD();
-                usd.setRate();
-                amt = usd.convert(amt);
-        }
+        CurrencyHandler currencyHandler = new CurrencyHandler(currency);
+        amt = currencyHandler.convert(amt);
+
         Account customerAccount = null;
         for (Account account :
                 ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
