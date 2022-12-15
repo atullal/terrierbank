@@ -138,24 +138,25 @@ public class TransferAmount extends javax.swing.JPanel {
         amt = currencyHandler.convert(amt);
         // Transfers money to said account
         Account customerAccount = null;
+        Account receiverAccount = null;
         for (Account account :
                 ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
             if(account.getAccountNumber() == Integer.parseInt(jLabel5.getText())) {
                 customerAccount = account;
             }
+            if(account.getAccountNumber() == Integer.parseInt(jTextField3.getText())) {
+                receiverAccount = account;
+            }
         }
-
+        if(receiverAccount == null) {
+            receiverAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField3.getText()));
+        }
         if(customerAccount == null) {
             customerAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(accountNo));
-            Account receiverAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField3.getText()));
-
-            Transaction transaction = new Transaction(customerAccount, receiverAccount, amt, TransactionType.TRANSFER);
-            transaction.process();
-        } else {
-            Account receiverAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField3.getText()));
-            Transaction transaction = new Transaction(customerAccount, receiverAccount, amt, TransactionType.TRANSFER);
-            transaction.process();
         }
+        
+        Transaction transaction = new Transaction(customerAccount, receiverAccount, amt, TransactionType.TRANSFER);
+        transaction.process();
 
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
