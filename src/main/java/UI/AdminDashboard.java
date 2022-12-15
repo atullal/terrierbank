@@ -62,6 +62,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
 
         jButton6.setText("STOCK MARKET");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("TRANSACTION HISTORY");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +89,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("PROFILE SETTINGS");
+        jButton8.setText("SETTINGS");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -117,7 +122,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(170, 170, 170)
                 .addComponent(jButton3)
                 .addGap(50, 50, 50)
                 .addComponent(jButton5)
@@ -126,12 +131,12 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jButton6)
                 .addGap(50, 50, 50)
+                .addComponent(jButton1)
+                .addGap(50, 50, 50)
                 .addComponent(jButton8)
                 .addGap(50, 50, 50)
                 .addComponent(jButton7)
-                .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         SplitPaneAdmin.setLeftComponent(jPanel3);
@@ -187,7 +192,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
+        AdminTransactionHistory addUpdatePanel = new AdminTransactionHistory();
         SplitPaneAdmin.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -213,6 +218,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         BankVault addUpdatePanel = new BankVault();
         SplitPaneAdmin.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        AdminStockMarket addUpdatePanel = new AdminStockMarket();
+        SplitPaneAdmin.setRightComponent(addUpdatePanel);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
