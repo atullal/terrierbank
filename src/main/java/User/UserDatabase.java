@@ -12,7 +12,7 @@ public class UserDatabase {
     public static void createTable() {
         String statement = "CREATE TABLE USER " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " USERNAME         TEXT PRIMARY KEY NOT NULL,"+
+                " USERNAME         TEXT NOT NULL,"+
                 " PASSWORD         TEXT     NOT NULL)";
         DatabaseController.getInstance().updateStatement(statement);
     }
