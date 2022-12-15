@@ -6,7 +6,9 @@ import Database.DatabaseController;
 
 import java.io.File;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 //private User loaner;
 //private Account associatedAccount;
@@ -30,14 +32,19 @@ public class LoanDatabase {
                 " REPAYMENT           INTEGER  NOT NULL, " +
                 " PROOF           TEXT  NOT NULL, " +
                 " STATUS           TEXT  NOT NULL, " +
+                " LOANDATE           TEXT  NOT NULL, " +
+                " REQUESTEDAMOUNT           INTEGER  NOT NULL, " +
+                " INTERESTRATE           REAL  NOT NULL, " +
                 " LOANAMOUNT           INTEGER  NOT NULL, " +
                 " PAIDAMOUNT        INTEGER NOT NULL)";
         DatabaseController.getInstance().updateStatement(statement);
     }
 
     public static int insert(Loan loan) {
-        String statement = "INSERT INTO LOAN (USERID, ACCOUNTNUM, LOANTYPE, COLLATERALTYPE, REPAYMENT, PROOF, STATUS, LOANAMOUNT, PAIDAMOUNT) " +
-                "VALUES ("+loan.getLoaner().getId()+", "+loan.getAssociatedAccount().getAccountNumber()+", '"+loan.getTypeOfLoan()+"', '"+loan.getCollateralType()+"', "+loan.getRepaymentPeriod()+", '"+loan.getProof().getPath()+"', '"+loan.getStatus()+"', "+loan.getLoanAmount()+", "+loan.getPaidAmount()+");";
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String date = formatter.format(loan.getLoanDate());
+        String statement = "INSERT INTO LOAN (USERID, ACCOUNTNUM, LOANTYPE, COLLATERALTYPE, REPAYMENT, PROOF, STATUS, LOANDATE, REQUESTEDAMOUNT, INTERESTRATE, LOANAMOUNT, PAIDAMOUNT) " +
+                "VALUES ("+loan.getLoaner().getId()+", "+loan.getAssociatedAccount().getAccountNumber()+", '"+loan.getTypeOfLoan()+"', '"+loan.getCollateralType()+"', "+loan.getRepaymentPeriod()+", '"+loan.getProof().getPath()+"', '"+loan.getStatus()+"', '"+date+"', "+ loan.getRequestAmount() +", "+loan.getInterestRate()+", "+loan.getLoanAmount()+", "+loan.getPaidAmount()+");";
         ResultSet result = DatabaseController.getInstance().runStatementWithGeneratedKeys(statement);
         try {
             if (result.next()) {
@@ -61,8 +68,13 @@ public class LoanDatabase {
                 int  repayment = result.getInt("REPAYMENT");
                 String proof = result.getString("PROOF");
                 String status = result.getString("STATUS");
-                int  loanamount = result.getInt("LOANAMOUNT");
-                int  paidamount = result.getInt("PAIDAMOUNT");
+                int  loanAmount = result.getInt("LOANAMOUNT");
+                int  paidAmount = result.getInt("PAIDAMOUNT");
+                String dateString = result.getString("LOANDATE");
+                SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = formatter.parse(dateString);
+                int  requestAmount = result.getInt("REQUESTEDAMOUNT");
+                double interest = result.getDouble("INTERESTRATE");
                 Account associatedAccount = null;
                 for (Account account :
                         customer.getAccounts()) {
@@ -71,7 +83,7 @@ public class LoanDatabase {
                     }
                 }
                 if(associatedAccount != null) {
-                    loans.add(new Loan(loanid, customer, associatedAccount, LoanType.of(loantype), CollateralType.of(collateraltype), repayment, new File(proof), LoanStatus.of(status), loanamount, paidamount));
+                    loans.add(new Loan(loanid, customer, associatedAccount, LoanType.of(loantype), CollateralType.of(collateraltype), repayment, new File(proof),requestAmount, interest, date , LoanStatus.of(status), loanAmount, paidAmount));
                 }
             }
         } catch (Exception e) {
@@ -82,8 +94,7 @@ public class LoanDatabase {
     }
 
     public static void update(Loan loan) {
-
-        String statement = "UPDATE LOAN SET STATUS = '"+loan.getStatus()+"', LOANAMOUNT = "+loan.getLoanAmount()+", PAIDAMOUNT = "+loan.getPaidAmount()+" WHERE LOANID = "+loan.getId()+";";
+        String statement = "UPDATE LOAN SET STATUS = '"+loan.getStatus()+"', LOANAMOUNT = "+loan.getLoanAmount()+", PAIDAMOUNT = "+loan.getPaidAmount()+", INTERESTRATE="+loan.getInterestRate()+"  WHERE LOANID = "+loan.getId()+";";
         DatabaseController.getInstance().updateStatement(statement);
     }
 

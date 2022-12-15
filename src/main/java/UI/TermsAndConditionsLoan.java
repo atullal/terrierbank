@@ -22,15 +22,17 @@ public class TermsAndConditionsLoan extends javax.swing.JPanel {
     private CollateralType collateralType;
     private int repayment;
     private File proof;
+    private int requestAmount;
     /**
      * Creates new form insloan
      */
-    public TermsAndConditionsLoan(Account account, LoanType loanType, CollateralType collateralType, int repayment, File proof) {
+    public TermsAndConditionsLoan(Account account, LoanType loanType, CollateralType collateralType, int repayment, File proof, int requestAmount) {
         this.account = account;
         this.loanType = loanType;
         this.collateralType = collateralType;
         this.repayment = repayment;
         this.proof = proof;
+        this.requestAmount = requestAmount;
         initComponents();
     }
 
@@ -98,7 +100,7 @@ public class TermsAndConditionsLoan extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        Loan createdLoan = LoanController.getInstance().newLoan(account, loanType, collateralType, repayment, proof);
+        Loan createdLoan = LoanController.getInstance().newLoan(account, loanType, collateralType, repayment, proof, requestAmount);
         UserLoanAccount addUpdatePanel = new UserLoanAccount(createdLoan);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);

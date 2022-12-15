@@ -5,6 +5,8 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import User.UserController;
+
 import javax.swing.JSplitPane;
 
 /**
@@ -191,7 +193,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        AdminTransactionHistory addUpdatePanel = new AdminTransactionHistory();
+        System.out.println(UserController.getInstance().getLoggedInUser());
+        AdminTransactionHistory addUpdatePanel = new AdminTransactionHistory(UserController.getInstance().getLoggedInUser());
         SplitPaneAdmin.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -205,6 +208,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         System.out.println("Log out");
+        UserController.getInstance().logout();
+        dispose();
+        UserOrAdminLogin log= new UserOrAdminLogin();
+        log.setVisible(true);
         
     }//GEN-LAST:event_jButton7ActionPerformed
 

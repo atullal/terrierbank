@@ -146,7 +146,7 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel11.setPreferredSize(new java.awt.Dimension(40, 20));
         jLabel11.setSize(new java.awt.Dimension(40, 20));
-
+        jLabel12.setText(String.valueOf(loan.getRequestAmount()));
         jLabel13.setText("REQUESTED AMOUNT");
 
         jLabel14.setText("SANCTION AMOUNT");

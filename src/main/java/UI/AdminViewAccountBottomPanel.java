@@ -125,6 +125,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
         ArrayList<Loan> pendingLoans = new ArrayList<>();
         ArrayList<Loan> approvedLoans = new ArrayList<>();
         for (Loan loan: allLoans) {
+            System.out.println(loan);
             if(loan.getStatus() == LoanStatus.SUBMITTED) {
                 pendingLoans.add(loan);
             } else {

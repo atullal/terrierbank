@@ -90,7 +90,7 @@ public class CustomerDatabase {
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {
             while (result.next()) {
-                int id = result.getInt("ID");
+                int id = result.getInt("USERID");
                 String  name = result.getString("NAME");
                 String dob  = result.getString("DOB");
                 SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");

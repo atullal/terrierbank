@@ -7,6 +7,9 @@ package UI;
 import Account.Account;
 import Bank.Customer;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author saisuryavarshith
@@ -36,8 +39,8 @@ public class AdminViewUserProfile extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new JComboBox<Account>();
+        jComboBox2 = new javax.swing.JComboBox<Account>();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -49,6 +52,7 @@ public class AdminViewUserProfile extends javax.swing.JPanel {
         jLabel2.setPreferredSize(new java.awt.Dimension(125, 30));
         jLabel2.setSize(new java.awt.Dimension(40, 20));
 
+        jLabel1.setText(customer.getName());
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setSize(new java.awt.Dimension(40, 20));
@@ -59,6 +63,7 @@ public class AdminViewUserProfile extends javax.swing.JPanel {
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 30));
 
+        jLabel4.setText(String.valueOf(customer.getId()));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setSize(new java.awt.Dimension(40, 20));
@@ -75,9 +80,13 @@ public class AdminViewUserProfile extends javax.swing.JPanel {
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ArrayList<Account> savingsAccounts = customer.getSavingAccounts();
+        ArrayList<Account> checkingAccounts = customer.getCheckingAccounts();
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Account>(savingsAccounts.toArray(new Account[savingsAccounts.size()])));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(checkingAccounts.toArray(new Account[checkingAccounts.size()])));
+
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -153,8 +162,8 @@ public class AdminViewUserProfile extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private JComboBox<Account> jComboBox1;
+    private JComboBox<Account> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

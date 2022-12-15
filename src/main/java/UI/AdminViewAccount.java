@@ -32,13 +32,15 @@ public class AdminViewAccount extends javax.swing.JPanel {
 
     private void handleCustomerChange() {
         Customer selectedCustomer = (Customer) jComboBox1.getSelectedItem();
-        selectedCustomer.fetchAccounts();
-        ArrayList<Account> accounts = selectedCustomer.getAccounts();
-        System.out.println("Available accounts");
-        for (Account account: accounts) {
-            System.out.println(account);
+        if (selectedCustomer != null) {
+            selectedCustomer.fetchAccounts();
+            ArrayList<Account> accounts = selectedCustomer.getAccounts();
+            System.out.println("Available accounts");
+            for (Account account: accounts) {
+                System.out.println(account);
+            }
+            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
         }
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
     }
 
     /**
@@ -78,6 +80,9 @@ public class AdminViewAccount extends javax.swing.JPanel {
         jLabel2.setText("USER NAME");
 
         ArrayList<Customer> customers = AdminController.getAllCustomers();
+        for (Customer customer: customers) {
+            System.out.println(customer);
+        }
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Customer>(customers.toArray(new Customer[customers.size()])));
 
@@ -168,7 +173,7 @@ public class AdminViewAccount extends javax.swing.JPanel {
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 
-public static JSplitPane getSplitPane() {
+    public static JSplitPane getSplitPane() {
         return jSplitPane1;
     }
 

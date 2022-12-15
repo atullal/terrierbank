@@ -3,6 +3,10 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import User.UserController;
+
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author saisuryavarshith
@@ -174,14 +178,22 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        dispose();
-        AdminDashboard log= new AdminDashboard();
-        log.setVisible(true);
-        
-        Home addUpdatePanel = new Home();
-        AdminDashboard.getSplitPane()
-                .setRightComponent(addUpdatePanel);
-        
+
+        boolean success = UserController.getInstance().adminLogin(userField.getText(), String.valueOf(passField.getPassword()));
+        if(success) {
+            dispose();
+            AdminDashboard log= new AdminDashboard();
+            log.setVisible(true);
+
+            Home addUpdatePanel = new Home();
+            AdminDashboard.getSplitPane()
+                    .setRightComponent(addUpdatePanel);
+        } else {
+            System.out.println("Incorrect username or password");
+            // TODO: Show error message in the UI.
+            showMessageDialog(this,"Incorrect username or password !!");
+        }
+
         
        
     }//GEN-LAST:event_loginActionPerformed

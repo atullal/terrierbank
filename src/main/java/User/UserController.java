@@ -39,7 +39,9 @@ public class UserController {
 
     public boolean adminLogin(String username, String password) {
         BankManager manager = BankManagerDatabase.getBankManager(username, password);
+        System.out.println(manager);
         if(manager != null) {
+            System.out.println("Logging manager in");
             System.out.println(manager);
             loggedInUser = manager;
             isLoggedIn = true;

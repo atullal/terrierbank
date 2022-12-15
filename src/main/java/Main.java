@@ -1,6 +1,7 @@
 import Account.AccountDatabase;
 import Bank.BankController;
 import Bank.BankManager;
+import Bank.BankManagerDatabase;
 import Bank.CustomerDatabase;
 import Loan.LoanDatabase;
 import Stock.Stock;
@@ -23,6 +24,7 @@ public class Main {
         TransactionDatabase.createTable();
         StockDatabase.createTable();
         LoanDatabase.createTable();
+        BankManagerDatabase.createTable();
     }
 
     private static void initializeApplication() {

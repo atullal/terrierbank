@@ -18,8 +18,8 @@ public class LoanController {
         return instance;
     }
 
-    public Loan newLoan(Account selectedAccount, LoanType typeOfLoan, CollateralType collateralType, int repaymentPeriod, File proof) {
-        Loan loan = new Loan(0, UserController.getInstance().getLoggedInUser(), selectedAccount, typeOfLoan, collateralType, repaymentPeriod, proof);
+    public Loan newLoan(Account selectedAccount, LoanType typeOfLoan, CollateralType collateralType, int repaymentPeriod, File proof, int requestAmount) {
+        Loan loan = new Loan(0, UserController.getInstance().getLoggedInUser(), selectedAccount, typeOfLoan, collateralType, repaymentPeriod, proof, requestAmount, 5.5);
         loan.save();
         ((Customer) UserController.getInstance().getLoggedInUser()).addLoan(loan);
         System.out.println(loan);

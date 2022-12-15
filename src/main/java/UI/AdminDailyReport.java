@@ -4,6 +4,8 @@
  */
 package UI;
 
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
@@ -139,7 +141,7 @@ public class AdminDailyReport extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminTransactionHistory addUpdatePanel = new AdminTransactionHistory();
+        AdminTransactionHistory addUpdatePanel = new AdminTransactionHistory(UserController.getInstance().getLoggedInUser());
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
