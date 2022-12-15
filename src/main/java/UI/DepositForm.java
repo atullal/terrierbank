@@ -54,6 +54,8 @@ public class DepositForm extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("DEPOSIT AMOUNT");
 
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -68,7 +70,6 @@ public class DepositForm extends javax.swing.JPanel {
         });
 
         jLabel2.setText("ACCOUNT NUMBER");
-        jLabel4.setText(accountNo);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD", "INR", "EURO" }));
         jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -96,9 +97,6 @@ public class DepositForm extends javax.swing.JPanel {
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("ACCOUNT TYPE");
-        if(accountType != null) {
-            jLabel5.setText(accountType.toString());
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

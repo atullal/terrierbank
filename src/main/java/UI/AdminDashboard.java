@@ -6,6 +6,7 @@ package UI;
  */
 
 import Backend_Files.BankManager;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -40,7 +41,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         rpanel = new javax.swing.JPanel();
         home = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,23 +138,17 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         rpanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("HOME");
+        home.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
         homeLayout.setHorizontalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homeLayout.createSequentialGroup()
-                .addGap(269, 269, 269)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 1210, Short.MAX_VALUE)
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homeLayout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(543, Short.MAX_VALUE))
+            .addGap(0, 850, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout rpanelLayout = new javax.swing.GroupLayout(rpanel);
@@ -255,7 +249,13 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
     }
+public static JSplitPane getSplitPane() {
+        return SplitPaneAdmin;
+    }
 
+    public void setSplitPane(JSplitPane AdminSplitPane) {
+        this.SplitPaneAdmin = SplitPaneAdmin;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JSplitPane SplitPaneAdmin;
     private javax.swing.JPanel home;
@@ -266,7 +266,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel rpanel;
     // End of variables declaration//GEN-END:variables

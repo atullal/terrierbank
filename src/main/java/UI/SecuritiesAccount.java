@@ -34,6 +34,8 @@ public class SecuritiesAccount extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton2.setText("DEPOSIT MONEY");
         jButton2.setSize(new java.awt.Dimension(140, 50));
         jButton2.addActionListener(new java.awt.event.ActionListener() {

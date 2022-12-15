@@ -41,7 +41,6 @@ public class UserDashboard extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         rpanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,23 +144,15 @@ public class UserDashboard extends javax.swing.JFrame {
 
         rpanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("HOME");
-
         javax.swing.GroupLayout rpanelLayout = new javax.swing.GroupLayout(rpanel);
         rpanel.setLayout(rpanelLayout);
         rpanelLayout.setHorizontalGroup(
             rpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rpanelLayout.createSequentialGroup()
-                .addGap(347, 347, 347)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(595, Short.MAX_VALUE))
+            .addGap(0, 1210, Short.MAX_VALUE)
         );
         rpanelLayout.setVerticalGroup(
             rpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rpanelLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(597, Short.MAX_VALUE))
+            .addGap(0, 850, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(rpanel);
@@ -284,7 +275,6 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel rpanel;
     private static javax.swing.JSplitPane splitPane;

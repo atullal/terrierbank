@@ -64,6 +64,8 @@ public class WithdrawForm extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton1.setText("CONFIRM");
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
         jButton1.addActionListener(new java.awt.event.ActionListener() {

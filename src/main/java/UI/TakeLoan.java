@@ -58,6 +58,8 @@ public class TakeLoan extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton1.setText("UPLOAD FILE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

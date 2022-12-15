@@ -60,6 +60,8 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jButton1.setText("VIEW COLLATERAL DOCUMENT");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "APPROVE", "REJCECT" }));

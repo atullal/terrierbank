@@ -38,12 +38,14 @@ public class UserViewAccounts extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new JComboBox<Account>();
-        jComboBox2 = new JComboBox<Account>();
-        jComboBox3 = new JComboBox<Loan>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("GO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,15 +79,16 @@ public class UserViewAccounts extends javax.swing.JPanel {
         jLabel1.setText("VIEW ACCOUNTS");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        ArrayList<Account> savingsAccounts = ((Customer) UserController.getInstance().getLoggedInUser()).getSavingAccounts();
-        ArrayList<Account> checkingAccounts = ((Customer) UserController.getInstance().getLoggedInUser()).getCheckingAccounts();
-        ArrayList<Loan> loans = ((Customer) UserController.getInstance().getLoggedInUser()).getLoans();
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Account>(savingsAccounts.toArray(new Account[savingsAccounts.size()])));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(checkingAccounts.toArray(new Account[checkingAccounts.size()])));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<Loan>(loans.toArray(new Loan[loans.size()])));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("SAVINGS ACCOUNT");
 
@@ -185,9 +188,9 @@ public class UserViewAccounts extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private JComboBox<Account> jComboBox1;
-    private JComboBox<Account> jComboBox2;
-    private JComboBox<Loan> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

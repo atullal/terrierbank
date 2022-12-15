@@ -39,6 +39,8 @@ public class PayLoanAmount extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("AMOUNT");
 
         jButton1.setText("CONFIRM");
