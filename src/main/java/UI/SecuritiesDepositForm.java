@@ -4,9 +4,11 @@
  */
 package UI;
 
+import Account.Account;
 import Account.AccountType;
 import Backend_Files.Customer;
 import Transaction.Transaction;
+import Transaction.TransactionType;
 import User.UserController;
 
 /**
@@ -20,9 +22,8 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
-    Transaction transaction;
+
     public SecuritiesDepositForm() {
-        transaction = new Transaction();
         initComponents();
     }
 
@@ -152,8 +153,10 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 //        System.out.println(jComboBox1.getSelectedItem());
 //        System.out.println(jTextField1.getText());
 //        System.out.println(jComboBox2.getSelectedItem());
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0,(String) jComboBox2.getSelectedItem());
-        transaction.process("Self", accountNo, Integer.parseInt(jTextField1.getText()));
+        Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0,(String) jComboBox2.getSelectedItem());
+
+        Transaction transaction = new Transaction(null, createdAccount, Integer.parseInt(jTextField1.getText()), TransactionType.DEPOSIT);
+        transaction.process();
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);

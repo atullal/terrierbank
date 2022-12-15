@@ -3,12 +3,14 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
 import Account.AccountType;
 import Backend_Files.CurrencyEuro;
 import Backend_Files.CurrencyRupee;
 import Backend_Files.CurrencyUSD;
 import Backend_Files.Customer;
 import Transaction.Transaction;
+import Transaction.TransactionType;
 import User.UserController;
 
 /**
@@ -22,7 +24,6 @@ public class DepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
-    Transaction transaction;
     public DepositForm() {
         initComponents();
     }
@@ -30,7 +31,6 @@ public class DepositForm extends javax.swing.JPanel {
     public DepositForm(String accountNo, AccountType accountType) {
         this.accountNo = accountNo;
         this.accountType = accountType;
-        this.transaction = new Transaction();
         initComponents();
     }
 
@@ -173,8 +173,21 @@ public class DepositForm extends javax.swing.JPanel {
                 usd.setRate();
                 amt = usd.convert(amt);
         }
-        ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, "");
-        transaction.process("Self", accountNo, amt);
+        Account customerAccount = null;
+        for (Account account :
+                ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
+            if(account.getAccountNumber() == Integer.parseInt(accountNo)) {
+                customerAccount = account;
+            }
+        }
+        if(customerAccount == null) {
+            Account newAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, "");
+            Transaction transaction = new Transaction(null, newAccount, amt, TransactionType.DEPOSIT);
+            transaction.process();
+        } else {
+            Transaction transaction = new Transaction(null, customerAccount, amt, TransactionType.DEPOSIT);
+            transaction.process();
+        }
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);

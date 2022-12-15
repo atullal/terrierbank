@@ -4,10 +4,15 @@
  */
 package UI;
 
+import Account.Account;
 import Backend_Files.CurrencyEuro;
 import Backend_Files.CurrencyRupee;
 import Backend_Files.CurrencyUSD;
+import Backend_Files.Customer;
 import Transaction.Transaction;
+import Transaction.TransactionType;
+import User.UserController;
+import Account.AccountDatabase;
 
 /**
  *
@@ -18,11 +23,9 @@ public class WithdrawForm extends javax.swing.JPanel {
     /**
      * Creates new form WithdrawForm
      */
-    Transaction transaction;
     String accountNo;
     public WithdrawForm(String accountNo) {
         this.accountNo = accountNo;
-        transaction = new Transaction();
 
         initComponents();
         if (accountNo.startsWith("1")){
@@ -176,7 +179,28 @@ public class WithdrawForm extends javax.swing.JPanel {
                 usd.setRate();
                 amt = usd.convert(amt);
         }
-        transaction.process(accountNo, "Cash", amt);
+
+        Account customerAccount = null;
+        for (Account account :
+                ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
+            System.out.println(account.getAccountNumber());
+            System.out.println(accountNo);
+            if(account.getAccountNumber() == Integer.parseInt(accountNo)) {
+                customerAccount = account;
+            }
+        }
+
+        if(customerAccount == null) {
+            System.out.println("Customer account not found");
+            customerAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(accountNo));
+            Transaction transaction = new Transaction(customerAccount, null, amt, TransactionType.WITHDRAW);
+            transaction.process();
+        } else {
+            System.out.println("Customer account found");
+            Transaction transaction = new Transaction(customerAccount, null, amt, TransactionType.WITHDRAW);
+            transaction.process();
+        }
+
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);

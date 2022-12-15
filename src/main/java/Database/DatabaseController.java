@@ -26,7 +26,7 @@ public class DatabaseController {
             stmt.close();
             databaseConnector.getDatabaseConnection().commit();
         } catch (Exception e) {
-            System.out.println("Unable to create table");
+            System.out.println("Unable to execute script");
             System.out.println(e);
         }
     }

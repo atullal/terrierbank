@@ -26,10 +26,10 @@ public class Customer extends User {
         this.loans = new ArrayList<>();
     }
 
-    public void createAccount(int accountNo, AccountType accountType, int bal, String savingsAccNo){
+    public Account createAccount(int accountNo, AccountType accountType, int bal, String savingsAccNo){
         // TODO Add
         AccountFactory accountFactory = new AccountFactory();
-        Account account;
+        Account account = null;
 
         switch (accountType) {
             case SAVINGS:
@@ -46,7 +46,7 @@ public class Customer extends User {
                 accounts.add(account);
                 break;
         }
-
+        return account;
 //        else {
 //            // TODO Make security account with savings account no
 //            account = accountFactory.makeAccount(type, bal, accountNo);

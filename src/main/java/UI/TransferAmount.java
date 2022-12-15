@@ -3,10 +3,15 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Account.AccountDatabase;
 import Backend_Files.CurrencyEuro;
 import Backend_Files.CurrencyRupee;
 import Backend_Files.CurrencyUSD;
+import Backend_Files.Customer;
 import Transaction.Transaction;
+import Transaction.TransactionType;
+import User.UserController;
 
 /**
  *
@@ -17,11 +22,9 @@ public class TransferAmount extends javax.swing.JPanel {
     /**
      * Creates new form transAmt
      */
-    Transaction transaction;
     String accountNo;
     public TransferAmount(String accountNo) {
         this.accountNo = accountNo;
-        transaction = new Transaction();
         initComponents();
         jLabel5.setText(this.accountNo);
     }
@@ -150,7 +153,26 @@ public class TransferAmount extends javax.swing.JPanel {
                 amt = usd.convert(amt);
         }
         // Transfers money to said account
-        transaction.process(jLabel5.getText(), jTextField3.getText(), amt);
+        Account customerAccount = null;
+        for (Account account :
+                ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
+            if(account.getAccountNumber() == Integer.parseInt(jLabel5.getText())) {
+                customerAccount = account;
+            }
+        }
+
+        if(customerAccount == null) {
+            customerAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(accountNo));
+            Account receiverAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField3.getText()));
+
+            Transaction transaction = new Transaction(customerAccount, receiverAccount, amt, TransactionType.TRANSFER);
+            transaction.process();
+        } else {
+            Account receiverAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField3.getText()));
+            Transaction transaction = new Transaction(customerAccount, receiverAccount, amt, TransactionType.TRANSFER);
+            transaction.process();
+        }
+
         UserViewAccounts addUpdatePanel = new UserViewAccounts();
         UserDashboard.getSplitPane()
         .setRightComponent(addUpdatePanel);
