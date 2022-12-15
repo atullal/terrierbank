@@ -5,6 +5,8 @@ package UI;/*
 
 import Account.AccountType;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author saisuryavarshith
@@ -14,7 +16,9 @@ public class TermsAndConditionsSecurities extends javax.swing.JPanel {
     /**
      * Creates new form insSec
      */
-    public TermsAndConditionsSecurities() {
+    ArrayList<String> eligibleSavingAccNos;
+    public TermsAndConditionsSecurities(ArrayList<String> eligibleSavingAccNos) {
+        this.eligibleSavingAccNos = eligibleSavingAccNos;
         initComponents();
     }
 

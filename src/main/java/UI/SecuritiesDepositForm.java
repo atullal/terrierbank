@@ -6,10 +6,13 @@ package UI;
 
 import Account.Account;
 import Account.AccountType;
+import Account.AccountDatabase;
 import Bank.Customer;
 import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -22,8 +25,14 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
+    ArrayList<String> eligibleSavingAccNos;
 
     public SecuritiesDepositForm() {
+        initComponents();
+    }
+
+    public SecuritiesDepositForm(ArrayList<String> eligibleSavingAccNos) {
+        this.eligibleSavingAccNos = eligibleSavingAccNos;
         initComponents();
     }
 
@@ -156,18 +165,24 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 //        System.out.println(jTextField1.getText());
 //        System.out.println(jComboBox2.getSelectedItem());
         Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0,(String) jComboBox2.getSelectedItem());
+        if (AccountDatabase.getAccountFromNumber((Integer)jComboBox2.getSelectedItem()).getBal()>2499){
+            Transaction transaction = new Transaction(null, createdAccount, Integer.parseInt(jTextField1.getText()), TransactionType.DEPOSIT);
+            transaction.process();
+            UserViewAccounts addUpdatePanel = new UserViewAccounts();
+            UserDashboard.getSplitPane()
+                    .setRightComponent(addUpdatePanel);
+        }
+        else {
+            // TODO Add error prompt here
+            System.out.println("Savings account does not have sufficient funds");
+        }
 
-        Transaction transaction = new Transaction(null, createdAccount, Integer.parseInt(jTextField1.getText()), TransactionType.DEPOSIT);
-        transaction.process();
-        UserViewAccounts addUpdatePanel = new UserViewAccounts();
-        UserDashboard.getSplitPane()
-        .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    // Back
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         CreateAccount addUpdatePanel = new CreateAccount();

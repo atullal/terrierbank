@@ -3,6 +3,12 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Bank.Customer;
+import Account.SavingsAccount;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author saisuryavarshith
@@ -12,7 +18,14 @@ public class CreateAccount extends javax.swing.JPanel {
     /**
      * Creates new form home
      */
+    private Customer customer;
+    private ArrayList<String> eligibleSavingsAccountNos;
     public CreateAccount() {
+        initComponents();
+    }
+    public CreateAccount(Customer customer) {
+        this.customer = customer;
+        eligibleSavingsAccountNos = new ArrayList<>();
         initComponents();
     }
 
@@ -101,9 +114,27 @@ public class CreateAccount extends javax.swing.JPanel {
     // Security Account
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        TermsAndConditionsSecurities addUpdatePanel = new TermsAndConditionsSecurities();
-        UserDashboard.getSplitPane()
-                .setRightComponent(addUpdatePanel);
+        if (customer.getSavingAccounts().size() == 0){
+            // TODO Add error prompt here
+            System.out.println("Not eligible");
+        }
+        else{
+            for(int i=0; i<customer.getSavingAccounts().size(); i++){
+                if (customer.getSavingAccounts().get(i).getBal()>4999){
+                    eligibleSavingsAccountNos.add(Integer.toString(customer.getSavingAccounts().get(i).getAccountNumber()));
+                }
+            }
+            if (eligibleSavingsAccountNos.size() == 0){
+                // TODO Add error prompt here
+                System.out.println("No eligible savings account found!");
+            }
+            else {
+                TermsAndConditionsSecurities addUpdatePanel = new TermsAndConditionsSecurities(eligibleSavingsAccountNos);
+                UserDashboard.getSplitPane()
+                        .setRightComponent(addUpdatePanel);
+            }
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
     
     // Savings Account

@@ -1,5 +1,6 @@
 package UI;
 
+import Bank.Customer;
 import User.UserController;
 
 import javax.swing.JSplitPane;
@@ -181,7 +182,7 @@ public class UserDashboard extends javax.swing.JFrame {
     // Create Account Button
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        CreateAccount addUpdatePanel = new CreateAccount();
+        CreateAccount addUpdatePanel = new CreateAccount((Customer) UserController.getInstance().getLoggedInUser());
         splitPane.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton4ActionPerformed
 

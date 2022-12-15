@@ -12,6 +12,7 @@ public class SecuritiesAccount extends javax.swing.JPanel {
     /**
      * Creates new form secaccount
      */
+    String savingsAccNo;
     public SecuritiesAccount() {
         initComponents();
     }
