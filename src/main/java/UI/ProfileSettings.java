@@ -50,6 +50,7 @@ public class ProfileSettings extends javax.swing.JPanel {
         lname.setText("FULL NAME");
         lname.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        tname.setBackground(new java.awt.Color(242, 242, 242));
         tname.setPreferredSize(new java.awt.Dimension(64, 25));
         tname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,12 +63,14 @@ public class ProfileSettings extends javax.swing.JPanel {
 
         laddress.setText("ADDRESS");
 
+        taddress.setBackground(new java.awt.Color(242, 242, 242));
         taddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 taddressActionPerformed(evt);
             }
         });
 
+        tidnum.setBackground(new java.awt.Color(242, 242, 242));
         tidnum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tidnumActionPerformed(evt);
@@ -76,6 +79,7 @@ public class ProfileSettings extends javax.swing.JPanel {
 
         lidnum.setText("ID NUMBER");
 
+        tuname.setBackground(new java.awt.Color(242, 242, 242));
         tuname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tunameActionPerformed(evt);
@@ -87,6 +91,8 @@ public class ProfileSettings extends javax.swing.JPanel {
 
         lpass.setText("CURRENT PASSWORD");
 
+        tpass.setBackground(new java.awt.Color(242, 242, 242));
+
         cancel.setText("CANCEL");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +101,13 @@ public class ProfileSettings extends javax.swing.JPanel {
         });
 
         jButton2.setText("CONFIRM");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        tpass1.setBackground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setText("NEW PASSWORD");
 
@@ -198,8 +211,18 @@ public class ProfileSettings extends javax.swing.JPanel {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
+         Home addUpdatePanel = new Home();
+        UserDashboard.getSplitPane()
+                .setRightComponent(addUpdatePanel);
         
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Home addUpdatePanel = new Home();
+        UserDashboard.getSplitPane()
+                .setRightComponent(addUpdatePanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
