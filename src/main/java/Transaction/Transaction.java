@@ -1,7 +1,9 @@
 package Transaction;
 
 import Account.Account;
+import Account.AccountType;
 import Account.AccountDatabase;
+import Backend_Files.Constants;
 import Database.DatabaseController;
 
 import java.time.LocalDateTime;
@@ -44,13 +46,29 @@ public class Transaction {
         this.id = id;
         this.date = date.format(now);
         this.time = time.format(now);
-
+        double fee;
         switch (type) {
             case WITHDRAW:
                 System.out.println("Withdrawing from " + sender.getAccountNumber());
-                TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "Cash", amount);
-                sender.setBal(sender.getBal()-amount);
-                sender.update();
+                if (sender.getBal()-amount>=0) {
+                    if (sender.getAccountType().equals(AccountType.CHECKING)){
+                        fee = amount* Constants.feeRate;
+                        amount = amount-fee;
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "999999999", amount);
+                        sender.setBal(sender.getBal() - amount);
+                        sender.update();
+                        receiver.setBal(receiver.getBal() + amount);
+                        receiver.update();
+                    }
+                    TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "Cash", amount);
+                    sender.setBal(sender.getBal() - amount);
+                    sender.update();
+                }
+                else{
+                    // TODO Add error prompt
+                    System.out.println("Not enough funds!");
+                }
                 break;
             case DEPOSIT:
                 System.out.println("Depositing to " + receiver.getAccountNumber());
@@ -59,12 +77,28 @@ public class Transaction {
                 receiver.update();
                 break;
             case TRANSFER:
-                System.out.println("Transfer from " + sender.getAccountNumber()+" to " + receiver.getAccountNumber());
-                TransactionDatabase.insert(id, date.format(now), time.format(now),String.valueOf(sender.getAccountNumber()), String.valueOf(receiver.getAccountNumber()), amount);
-                sender.setBal(sender.getBal()-amount);
-                sender.update();
-                receiver.setBal(receiver.getBal()+amount);
-                receiver.update();
+                if (sender.getBal()-amount>=0) {
+                    if (sender.getAccountType().equals(AccountType.CHECKING)){
+                        fee = amount* Constants.feeRate;
+                        amount = amount-fee;
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "999999999", amount);
+                        sender.setBal(sender.getBal() - amount);
+                        sender.update();
+                        receiver.setBal(receiver.getBal() + amount);
+                        receiver.update();
+                    }
+                    System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
+                    TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(receiver.getAccountNumber()), amount);
+                    sender.setBal(sender.getBal() - amount);
+                    sender.update();
+                    receiver.setBal(receiver.getBal() + amount);
+                    receiver.update();
+                }
+                else {
+                    // TODO Add error prompt
+                    System.out.println("Not enough funds!");
+                }
                 break;
         }
     }

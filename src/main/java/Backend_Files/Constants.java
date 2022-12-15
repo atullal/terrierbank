@@ -7,5 +7,6 @@ public class Constants {
     public static double inr_usdRate = 1/usd_inrRate;
     public static double euro_inrRate = 1/inr_euroRate;
     public static double euro_usdRate = 1/usd_euroRate;
+    public static double feeRate = 0.1;
     public static String defautCurrency = "USD";
 }
