@@ -31,6 +31,8 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
         initComponents();
     }
 
+    // Contains saving accounts with >5000 balance (Only used for creating, after creating account,
+    // security account must be linked to only one savings account
     public SecuritiesDepositForm(ArrayList<String> eligibleSavingAccNos) {
         this.eligibleSavingAccNos = eligibleSavingAccNos;
         initComponents();
