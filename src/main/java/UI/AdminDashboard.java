@@ -5,6 +5,8 @@ package UI;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import Backend_Files.BankManager;
+
 /**
  *
  * @author saisuryavarshith
@@ -191,7 +193,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser();
+        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
         SplitPaneAdmin.setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -1,9 +1,14 @@
 package Account;
 
 import Backend_Files.Customer;
+import Transaction.TransactionAssociated;
 import Database.Model;
+import Transaction.Transaction;
+import Transaction.TransactionDatabase;
 
-public abstract class Account implements Model {
+import java.util.ArrayList;
+
+public abstract class Account implements Model, TransactionAssociated {
     private Customer customer;
     private int accountNumber;
     private AccountType accountType;
@@ -59,5 +64,11 @@ public abstract class Account implements Model {
     @Override
     public void update() {
         AccountDatabase.update(this);
+    }
+
+
+    @Override
+    public ArrayList<Transaction> getTransactions() {
+        return TransactionDatabase.getTransactions(this);
     }
 }

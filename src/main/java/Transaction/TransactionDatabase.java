@@ -28,7 +28,7 @@ public class TransactionDatabase {
         DatabaseController.getInstance().updateStatement(statement);
     }
 
-    public static ArrayList<Transaction> getTransaction(Account account) {
+    public static ArrayList<Transaction> getTransactions(Account account) {
         ArrayList<Transaction> transactions = new ArrayList<>();
         String statement = "SELECT * FROM TRANSACTIONS WHERE FROMACC='"+account.getAccountNumber()+"' OR TOACC='"+account.getAccountNumber()+"';";
         System.out.println(statement);
@@ -64,39 +64,76 @@ public class TransactionDatabase {
         return transactions;
     }
 
-//    public static ArrayList<Transaction> getTransaction(Customer customer) {
-//        ArrayList<Transaction> transactions = new ArrayList<>();
-//        String statement = "SELECT * FROM TRANSACTIONS WHERE FROMACC='"+account.getAccountNumber()+"' OR TOACC='"+account.getAccountNumber()+"';";
-//        System.out.println(statement);
-//        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
-//        try {
-//            while (result.next()) {
-//                int id = result.getInt("TRANSCATIONID");
-//                String date  = result.getString("DATE");
-//                String time  = result.getString("TIME");
-//                String from = result.getString("FROMACC");
-//                String to = result.getString("TOACC");
-//                double amount = result.getDouble("AMOUNT");
-//
-//                Account sender = null;
-//                Account receiver = null;
-//                TransactionType type = TransactionType.TRANSFER;
-//                if(!from.equals("Self")) {
-//                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
-//                } else {
-//                    type = TransactionType.DEPOSIT;
-//                }
-//                if(!to.equals("Cash")) {
-//                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
-//                } else {
-//                    type = TransactionType.WITHDRAW;
-//                }
-//                transactions.add(new Transaction(sender, receiver, amount, type, id, date, time));
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Cannot find the user");
-//            System.out.println(e);
-//        }
-//        return transactions;
-//    }
+    public static ArrayList<Transaction> getTransactions(Customer customer) {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        String statement = "SELECT * FROM TRANSACTIONS LEFT JOIN ACCOUNT AS FROMACCOUNT ON FROMACCOUNT.ACCOUNTNUM == TRANSACTIONS.FROMACC LEFT JOIN ACCOUNT AS TOACCOUNT ON TOACCOUNT.ACCOUNTNUM == TRANSACTIONS.TOACC WHERE FROMACCOUNT.USERID = "+customer.getId()+" OR TOACCOUNT.USERID = "+customer.getId()+";";
+        System.out.println(statement);
+        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
+        try {
+            while (result.next()) {
+                int id = result.getInt("TRANSCATIONID");
+                String date  = result.getString("DATE");
+                String time  = result.getString("TIME");
+                String from = result.getString("FROMACC");
+                String to = result.getString("TOACC");
+                double amount = result.getDouble("AMOUNT");
+
+                Account sender = null;
+                Account receiver = null;
+                TransactionType type = TransactionType.TRANSFER;
+                if(!from.equals("Self")) {
+                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                } else {
+                    type = TransactionType.DEPOSIT;
+                }
+                if(!to.equals("Cash")) {
+                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                } else {
+                    type = TransactionType.WITHDRAW;
+                }
+                transactions.add(new Transaction(sender, receiver, amount, type, id, date, time));
+            }
+        } catch (Exception e) {
+            System.out.println("Cannot find the user");
+            System.out.println(e);
+        }
+        return transactions;
+    }
+
+    public static ArrayList<Transaction> getAllTransactions() {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        String statement = "SELECT * FROM TRANSACTIONS;=";
+        System.out.println(statement);
+        ResultSet result = DatabaseController.getInstance().queryStatement(statement);
+        try {
+            while (result.next()) {
+                int id = result.getInt("TRANSCATIONID");
+                String date  = result.getString("DATE");
+                String time  = result.getString("TIME");
+                String from = result.getString("FROMACC");
+                String to = result.getString("TOACC");
+                double amount = result.getDouble("AMOUNT");
+
+                Account sender = null;
+                Account receiver = null;
+                TransactionType type = TransactionType.TRANSFER;
+                if(!from.equals("Self")) {
+                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                } else {
+                    type = TransactionType.DEPOSIT;
+                }
+                if(!to.equals("Cash")) {
+                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                } else {
+                    type = TransactionType.WITHDRAW;
+                }
+                transactions.add(new Transaction(sender, receiver, amount, type, id, date, time));
+            }
+        } catch (Exception e) {
+            System.out.println("Cannot find the user");
+            System.out.println(e);
+        }
+        return transactions;
+    }
+
 }

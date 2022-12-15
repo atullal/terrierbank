@@ -7,7 +7,7 @@ import java.util.Date;
 public class UserController {
     private static UserController instance = null;
 
-    private User loggedInUser;
+    private Customer loggedInUser;
     private boolean isLoggedIn;
 
     private UserController() {
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     public boolean customerLogin(String username, String password) {
-        User user = UserDatabase.getCustomer(username, password);
+        Customer user = UserDatabase.getCustomer(username, password);
         if(user != null) {
             System.out.println(user);
             loggedInUser = user;
@@ -37,7 +37,7 @@ public class UserController {
         isLoggedIn = false;
     }
 
-    public User getLoggedInUser() {
+    public Customer getLoggedInUser() {
         return loggedInUser;
     }
 

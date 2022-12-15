@@ -1,15 +1,19 @@
 package Backend_Files;
 
+import Transaction.Transaction;
+import Transaction.TransactionAssociated;
+import Transaction.TransactionDatabase;
 import User.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-public class BankManager extends User {
-    protected BankManager(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
-        super(name, dateOfBirth, address, idNumber, userName, password);
+public class BankManager implements TransactionAssociated {
+    public BankManager() {
     }
 
-    protected BankManager(int id, String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
-        super(id, name, dateOfBirth, address, idNumber, userName, password);
+    @Override
+    public ArrayList<Transaction> getTransactions() {
+        return TransactionDatabase.getAllTransactions();
     }
 }

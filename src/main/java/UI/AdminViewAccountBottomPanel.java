@@ -4,6 +4,7 @@ package UI;/*
  */
 
 import Account.Account;
+import Backend_Files.BankManager;
 import Backend_Files.Customer;
 import Loan.Loan;
 import Loan.LoanStatus;
@@ -222,7 +223,7 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser();
+        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
         AdminViewAccount.getSplitPane()
                 .setRightComponent(addUpdatePanel);
         

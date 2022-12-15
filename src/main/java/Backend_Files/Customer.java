@@ -6,12 +6,15 @@ import Account.AccountType;
 import Account.AccountDatabase;
 import Loan.Loan;
 import Loan.LoanDatabase;
+import Transaction.Transaction;
+import Transaction.TransactionDatabase;
+import Transaction.TransactionAssociated;
 import User.User;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Customer extends User {
+public class Customer extends User implements TransactionAssociated {
     ArrayList<Account> accounts;
     ArrayList<Loan> loans;
     public Customer(String name, Date dateOfBirth, String address, String idNumber, String userName, String password) {
@@ -106,5 +109,10 @@ public class Customer extends User {
     @Override
     public String toString() {
         return this.getUserName();
+    }
+
+    @Override
+    public ArrayList<Transaction> getTransactions() {
+        return TransactionDatabase.getTransactions(this);
     }
 }

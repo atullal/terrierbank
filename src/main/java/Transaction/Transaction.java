@@ -34,33 +34,6 @@ public class Transaction {
         this.date = date;
         this.time = time;
     }
-//    public void process(String sender, String receiver, double amt){
-//        // TODO Check transaction code and add code to update values
-//        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
-//        DateTimeFormatter date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//        LocalDateTime now = LocalDateTime.now();
-//        int id = (int)(Math.random()*(99999999-10000000+1)+10000000);
-//        TransactionDatabase.insert(id, date.format(now), time.format(now), sender, receiver, amt);
-//        System.out.println(sender+" sends "+Double.toString(amt)+" to "+receiver);
-//        if (receiver.equals("Cash")){
-//            System.out.println("Entered");
-//            Account send = AccountDatabase.getAccountFromNumber(Integer.parseInt(sender));
-//            send.setBal(send.getBal()-amt);
-//            send.update();
-//        } else if (sender.equals("Self")) {
-//            Account receive = AccountDatabase.getAccountFromNumber(Integer.parseInt(receiver));
-//            receive.setBal(receive.getBal()+amt);
-//            receive.update();
-//        }
-//        else {
-//            Account send = AccountDatabase.getAccountFromNumber(Integer.parseInt(sender));
-//            send.setBal(send.getBal()-amt);
-//            send.update();
-//            Account receive = AccountDatabase.getAccountFromNumber(Integer.parseInt(receiver));
-//            receive.setBal(receive.getBal()+amt);
-//            receive.update();
-//        }
-//    }
 
     public void process(){
         // TODO Check transaction code and add code to update values
@@ -94,5 +67,33 @@ public class Transaction {
                 receiver.update();
                 break;
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Account getReceiver() {
+        return receiver;
+    }
+
+    public Account getSender() {
+        return sender;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public TransactionType getType() {
+        return type;
     }
 }
