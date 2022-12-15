@@ -43,10 +43,10 @@ public class TakeLoan extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<LoanType>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new JComboBox<CollateralType>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -72,7 +72,7 @@ public class TakeLoan extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR LOAN", "EDUCATION", "HOME LOAN", "PERSONAL LOAN" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<LoanType>(LoanType.values()));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -83,7 +83,7 @@ public class TakeLoan extends javax.swing.JPanel {
 
         jLabel2.setText("COLLATERAL TYPE");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR", "GOLD", "PROPERTY", "NO COLLATERAL" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<CollateralType>(CollateralType.values()));
 
         jLabel3.setText("PROOF OF COLLATERAL");
 
@@ -103,8 +103,9 @@ public class TakeLoan extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
+        ArrayList<Account> accounts = ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts();
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<Account>(accounts.toArray(new Account[accounts.size()])));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
 
@@ -232,9 +233,9 @@ public class TakeLoan extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<LoanType> jComboBox1;
+    private javax.swing.JComboBox<CollateralType> jComboBox2;
+    private javax.swing.JComboBox<Account> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
