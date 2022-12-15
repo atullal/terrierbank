@@ -7,6 +7,7 @@ package UI;
 import Account.Account;
 import Account.AccountType;
 import Account.AccountDatabase;
+import Backend_Files.Constants;
 import Bank.Customer;
 import Transaction.Transaction;
 import Transaction.TransactionType;
@@ -25,22 +26,20 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
-    ArrayList<String> eligibleSavingAccNos;
+    private ArrayList<String> eligibleSavingAccNos;
+    private boolean newAcc;
 
     public SecuritiesDepositForm() {
+        this.newAcc = false;
         initComponents();
     }
 
-    // Contains saving accounts with >5000 balance (Only used for creating, after creating account,
+    // eligibleSavingAccNos contains saving accounts with >5000 balance (Only used for creating, after creating account,
     // security account must be linked to only one savings account)
-    public SecuritiesDepositForm(ArrayList<String> eligibleSavingAccNos) {
-        this.eligibleSavingAccNos = eligibleSavingAccNos;
-        initComponents();
-    }
-
-    public SecuritiesDepositForm(String accountNo, AccountType accountType) {
+    public SecuritiesDepositForm(String accountNo, AccountType accountType, ArrayList<String> eligibleSavingAccNos, boolean newAcc) {
         this.accountNo = accountNo;
         this.accountType = accountType;
+        this.newAcc = newAcc;
         initComponents();
     }
 
@@ -168,7 +167,15 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 //        System.out.println(jComboBox2.getSelectedItem());
         Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0,(String) jComboBox2.getSelectedItem());
         if (AccountDatabase.getAccountFromNumber((Integer)jComboBox2.getSelectedItem()).getBal()>2499){
-            Transaction transaction = new Transaction(null, createdAccount, Integer.parseInt(jTextField1.getText()), TransactionType.DEPOSIT);
+
+            double amt = Double.parseDouble(jTextField1.getText());
+            if (newAcc){
+                double fee = amt* Constants.feeRate;
+                amt = amt-fee;
+                Transaction transaction = new Transaction(createdAccount, null, amt, TransactionType.FEE);
+                transaction.process();
+            }
+            Transaction transaction = new Transaction(null, createdAccount, amt, TransactionType.DEPOSIT);
             transaction.process();
             UserViewAccounts addUpdatePanel = new UserViewAccounts();
             UserDashboard.getSplitPane()

@@ -8,7 +8,8 @@ import java.util.Map;
 public enum TransactionType {
     WITHDRAW("Withdraw"),
     DEPOSIT("Deposit"),
-    TRANSFER("Transfer");
+    TRANSFER("Transfer"),
+    FEE("Fee");
 
     private final String text;
 

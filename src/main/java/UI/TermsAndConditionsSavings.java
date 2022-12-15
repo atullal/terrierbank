@@ -83,7 +83,7 @@ public class TermsAndConditionsSavings extends javax.swing.JPanel {
         String accountNo = "1";
         int rand = (int)(Math.random()*(99999999-10000000+1)+10000000);
         accountNo = accountNo + String.valueOf(rand);
-        DepositForm addUpdatePanel = new DepositForm(accountNo, AccountType.SAVINGS);
+        DepositForm addUpdatePanel = new DepositForm(accountNo, AccountType.SAVINGS, true);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
 

@@ -170,7 +170,7 @@ public class UserAccount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DepositForm addUpdatePanel = new DepositForm(Integer.toString(account.getAccountNumber()),account.getAccountType());
+        DepositForm addUpdatePanel = new DepositForm(Integer.toString(account.getAccountNumber()),account.getAccountType(), false);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed

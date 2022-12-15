@@ -85,7 +85,7 @@ public class TermsAndConditionsCheckings extends javax.swing.JPanel {
         String accountNo = "2";
         int rand = (int)(Math.random()*(99999999-10000000+1)+10000000);
         accountNo = accountNo + String.valueOf(rand);
-        DepositForm addUpdatePanel = new DepositForm(accountNo, AccountType.CHECKING);
+        DepositForm addUpdatePanel = new DepositForm(accountNo, AccountType.CHECKING, true);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed

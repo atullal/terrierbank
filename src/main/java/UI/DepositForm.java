@@ -22,13 +22,15 @@ public class DepositForm extends javax.swing.JPanel {
      */
     private String accountNo;
     private AccountType accountType;
+    private boolean newAcc;
     public DepositForm() {
         initComponents();
     }
     
-    public DepositForm(String accountNo, AccountType accountType) {
+    public DepositForm(String accountNo, AccountType accountType, boolean newAcc) {
         this.accountNo = accountNo;
         this.accountType = accountType;
+        this.newAcc = newAcc;
         initComponents();
     }
 
@@ -169,6 +171,10 @@ public class DepositForm extends javax.swing.JPanel {
         }
         if(customerAccount == null) {
             Account newAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, "");
+            double fee = amt* Constants.feeRate;
+            amt = amt-fee;
+            Transaction feeTransaction = new Transaction(newAccount, null, amt, TransactionType.FEE);
+            feeTransaction.process();
             Transaction transaction = new Transaction(null, newAccount, amt, TransactionType.DEPOSIT);
             transaction.process();
         } else {

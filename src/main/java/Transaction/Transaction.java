@@ -47,6 +47,7 @@ public class Transaction {
         this.date = date.format(now);
         this.time = time.format(now);
         double fee;
+        Account bankAcc = AccountDatabase.getAccountFromNumber(999999999);
         switch (type) {
             case WITHDRAW:
                 System.out.println("Withdrawing from " + sender.getAccountNumber());
@@ -54,12 +55,12 @@ public class Transaction {
                     if (sender.getAccountType().equals(AccountType.CHECKING)){
                         fee = amount* Constants.feeRate;
                         amount = amount-fee;
-                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
-                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "999999999", amount);
-                        sender.setBal(sender.getBal() - amount);
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankAcc.getAccountNumber()), fee);
+                        sender.setBal(sender.getBal() - fee);
                         sender.update();
-                        receiver.setBal(receiver.getBal() + amount);
-                        receiver.update();
+                        bankAcc.setBal(bankAcc.getBal() + fee);
+                        bankAcc.update();
                     }
                     TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "Cash", amount);
                     sender.setBal(sender.getBal() - amount);
@@ -81,12 +82,12 @@ public class Transaction {
                     if (sender.getAccountType().equals(AccountType.CHECKING)){
                         fee = amount* Constants.feeRate;
                         amount = amount-fee;
-                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
-                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "999999999", amount);
-                        sender.setBal(sender.getBal() - amount);
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankAcc.getAccountNumber()), fee);
+                        sender.setBal(sender.getBal() - fee);
                         sender.update();
-                        receiver.setBal(receiver.getBal() + amount);
-                        receiver.update();
+                        bankAcc.setBal(bankAcc.getBal() + fee);
+                        bankAcc.update();
                     }
                     System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
                     TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(receiver.getAccountNumber()), amount);
@@ -99,6 +100,14 @@ public class Transaction {
                     // TODO Add error prompt
                     System.out.println("Not enough funds!");
                 }
+                break;
+            case FEE:
+                System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
+                TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()),String.valueOf(bankAcc.getAccountNumber()) , amount);
+                sender.setBal(sender.getBal() - amount);
+                sender.update();
+                bankAcc.setBal(bankAcc.getBal() + amount);
+                bankAcc.update();
                 break;
         }
     }

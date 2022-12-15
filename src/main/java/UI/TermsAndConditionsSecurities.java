@@ -88,7 +88,7 @@ public class TermsAndConditionsSecurities extends javax.swing.JPanel {
         int rand = (int)(Math.random()*(99999999-10000000+1)+10000000);
         accountNo = accountNo + String.valueOf(rand);
         // TODO Change to make separate form for securities account
-        SecuritiesDepositForm addUpdatePanel = new SecuritiesDepositForm(accountNo, AccountType.SECURITY);
+        SecuritiesDepositForm addUpdatePanel = new SecuritiesDepositForm(accountNo, AccountType.SECURITY, eligibleSavingAccNos, true);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);
     }//GEN-LAST:event_jButton1ActionPerformed
