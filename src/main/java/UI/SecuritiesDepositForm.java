@@ -182,14 +182,14 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
             if (savingsAccount.getBal()>4999){
                 double amt = Double.parseDouble(jTextField1.getText());
                 if (newAcc){
-                    double fee = amt* Constants.feeRate;
-                    amt = amt-fee;
-                    Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.DEPOSIT);
+//                    double fee = amt* Constants.feeRate;
+//                    amt = amt-fee;
+                    Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.TRANSFER);
                     transaction.process();
-                    Transaction transaction_fee = new Transaction(createdAccount, null, fee, TransactionType.FEE);
-                    transaction_fee.process();
+//                    Transaction transaction_fee = new Transaction(createdAccount, null, fee, TransactionType.FEE);
+//                    transaction_fee.process();
                 }
-                Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.DEPOSIT);
+                Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.TRANSFER);
                 transaction.process();
                 UserViewAccounts addUpdatePanel = new UserViewAccounts();
                 UserDashboard.getSplitPane()

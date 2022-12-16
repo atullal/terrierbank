@@ -4,6 +4,11 @@
  */
 package UI;
 
+import Account.Account;
+import Stock.Stock;
+import Stock.StockMarket;
+import java.util.ArrayList;
+
 /**
  *
  * @author saisuryavarshith
@@ -15,6 +20,7 @@ public class UserStockMarket extends javax.swing.JPanel {
      */
     public UserStockMarket() {
         initComponents();
+        display();
     }
 
     /**
@@ -59,7 +65,8 @@ public class UserStockMarket extends javax.swing.JPanel {
 
         jButton1.setText("BUY");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+//        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("STOCK ID");
@@ -110,7 +117,34 @@ public class UserStockMarket extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void display() {
+        ArrayList<Stock> stocks = StockMarket.getInstance().getStocks();
+        String[][] stockList = new String[stocks.size()][4];
+        String stockIDs;
+        for (int i = 0; i < stocks.size() ; i++) {
+            Stock stock = stocks.get(i);
+            stockList[i][0] = String.valueOf(stock.getSid());
+            stockList[i][1] = stock.getSymbol();
+            stockList[i][2] = stock.getStockName();
+            stockList[i][3] = String.valueOf(stock.getMarketValue());
+        }
 
+        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                stockList,
+                new String [] {
+                        "STOCK ID", "SYMBOL", "STOCK NAME", "VALUE"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
