@@ -48,6 +48,7 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         int totalTransaction = 0;
         for (int i = 0; i < transactions.size() ; i++) {
             Transaction transaction = transactions.get(i);
+            System.out.println(transaction);
             transactionData[i][0] = transaction.getDate();
             transactionData[i][1] = transaction.getTime();
             if(transaction.getSender() != null) {
@@ -70,9 +71,7 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         }
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                transactionData,
-            },
+            transactionData,
             new String [] {
                 "DATE", "TIME", "FROM", "TO", "AMOUNT SENT", "AMOUNT RECIEVED"
             }

@@ -101,7 +101,7 @@ public class TransactionDatabase {
 
     public static ArrayList<Transaction> getAllTransactions() {
         ArrayList<Transaction> transactions = new ArrayList<>();
-        String statement = "SELECT * FROM TRANSACTIONS;=";
+        String statement = "SELECT * FROM TRANSACTIONS;";
         System.out.println(statement);
         ResultSet result = DatabaseController.getInstance().queryStatement(statement);
         try {
