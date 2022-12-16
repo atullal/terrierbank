@@ -42,15 +42,17 @@ public class Stock implements Model {
         this.marketValue = marketValue;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
 
     @Override
     public void update() {
-
     }
 
     @Override
     public void save() {
-
+        StockDatabase.insert(this.sid, this.stockName, this.symbol, this.marketValue);
     }
 
     @Override

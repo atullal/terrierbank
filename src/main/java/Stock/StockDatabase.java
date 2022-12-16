@@ -11,16 +11,16 @@ public class StockDatabase {
 
     public static void createTable() {
         String statement = "CREATE TABLE STOCK " +
-                "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "(ID INTEGER PRIMARY KEY NOT NULL," +
                 " SYMBOL           TEXT    NOT NULL, " +
                 " NAME           TEXT    NOT NULL, " +
                 " VALUE            REAL     NOT NULL) ";
         DatabaseController.getInstance().updateStatement(statement);
     }
 
-    public static int insert(String name, String symbol, Double value) {
-        String statement = "INSERT INTO STOCK (SYMBOL, NAME, VALUE) " +
-                "VALUES ('"+symbol+"', '"+name+"', "+value+" );";
+    public static int insert(int sid, String name, String symbol, Double value) {
+        String statement = "INSERT INTO STOCK (ID, SYMBOL, NAME, VALUE) " +
+                "VALUES ("+sid+", '"+symbol+"', '"+name+"', "+value+" );";
         ResultSet result = DatabaseController.getInstance().runStatementWithGeneratedKeys(statement);
         try {
             if (result.next()) {

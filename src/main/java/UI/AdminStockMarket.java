@@ -4,6 +4,12 @@
  */
 package UI;
 
+import Stock.Stock;
+import Stock.StockMarket;
+import Transaction.Transaction;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author saisuryavarshith
@@ -43,14 +49,19 @@ public class AdminStockMarket extends javax.swing.JPanel {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("STOCK ID");
+        ArrayList<Stock> stocks = StockMarket.getInstance().getStocks();
+        String[][] stockList = new String[stocks.size()][4];
+        for (int i = 0; i < stocks.size() ; i++) {
+            Stock stock = stocks.get(i);
+            System.out.println(stock);
+            stockList[i][0] = String.valueOf(stock.getSid());
+            stockList[i][1] = stock.getSymbol();
+            stockList[i][2] = stock.getStockName();
+            stockList[i][3] = String.valueOf(stock.getMarketValue());
+        }
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            stockList,
             new String [] {
                 "STOCK ID", "SYMBOL", "STOCK NAME", "VALUE"
             }
@@ -69,7 +80,11 @@ public class AdminStockMarket extends javax.swing.JPanel {
         jLabel2.setText("SYMBOL");
 
         jButton1.setText("DELETE");
-
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -83,7 +98,11 @@ public class AdminStockMarket extends javax.swing.JPanel {
         jLabel4.setText("STOCK VALUE");
 
         jButton2.setText("ADD");
-
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,6 +159,48 @@ public class AdminStockMarket extends javax.swing.JPanel {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void updateStocks() {
+        ArrayList<Stock> stocks = StockMarket.getInstance().getStocks();
+        String[][] stockList = new String[stocks.size()][4];
+        for (int i = 0; i < stocks.size() ; i++) {
+            Stock stock = stocks.get(i);
+            stockList[i][0] = String.valueOf(stock.getSid());
+            stockList[i][1] = stock.getSymbol();
+            stockList[i][2] = stock.getStockName();
+            stockList[i][3] = String.valueOf(stock.getMarketValue());
+        }
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                stockList,
+                new String [] {
+                        "STOCK ID", "SYMBOL", "STOCK NAME", "VALUE"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(jTextField1.getText());
+        System.out.println(jTextField2.getText());
+        System.out.println(jTextField3.getText());
+        System.out.println(jTextField4.getText());
+        StockMarket.getInstance().listStock(Integer.parseInt(jTextField2.getText()), jTextField3.getText(), jTextField1.getText(), Double.parseDouble(jTextField4.getText()));
+        this.updateStocks();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

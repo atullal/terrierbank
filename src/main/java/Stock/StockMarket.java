@@ -12,9 +12,14 @@ public class StockMarket {
 
 
     private ArrayList<StockPosition> stockPositions;
+    private ArrayList<Stock> stocks;
     private StockMarket(){
         initializeStockPositions();
-
+        this.stocks = new ArrayList<>();
+        ArrayList<Stock> stockArrayList = StockDatabase.getStocks();
+        if(stockArrayList != null) {
+            this.stocks = stockArrayList;
+        }
     }
 
     private void initializeStockPositions() {
@@ -51,7 +56,7 @@ public class StockMarket {
         return sp;
     }
 
-    public StockPosition sellStock(int stockPos,User user , SecurityAccount secAccnt ){
+    public StockPosition sellStock(int stockPos, User user , SecurityAccount secAccnt ){
         StockPosition sp = null;
         Double curValue;
         Double profit;
@@ -84,8 +89,22 @@ public class StockMarket {
         return profits;
     }
 
+    public ArrayList<Stock> getStocks() {
+        return stocks;
+    }
+
     private void addStock(StockPosition sp) {
         stockPositions.add(sp);
+    }
+
+    public void listStock(int sid, String name, String symbol, Double value) {
+        Stock stock = new Stock(sid, name, symbol, value);
+        stock.save();
+        this.stocks.add(stock);
+    }
+
+    public void listStock(Stock stock) {
+        this.stocks.add(stock);
     }
 
     public ArrayList<StockPosition> returnOpenPosition(User user){
