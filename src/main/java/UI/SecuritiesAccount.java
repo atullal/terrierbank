@@ -3,17 +3,22 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Bank.Customer;
+import User.UserController;
+
 /**
  *
  * @author saisuryavarshith
  */
 public class SecuritiesAccount extends javax.swing.JPanel {
-
+    private Account securityAccount;
     /**
      * Creates new form secaccount
      */
     String savingsAccNo;
     public SecuritiesAccount() {
+        this.securityAccount = ((Customer) UserController.getInstance().getLoggedInUser()).getSecurityAccount();
         initComponents();
     }
 
@@ -56,10 +61,12 @@ public class SecuritiesAccount extends javax.swing.JPanel {
 
         jLabel1.setText("ACCOUNT NUMBER");
 
+        jLabel2.setText(String.valueOf(securityAccount.getAccountNumber()));
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setText("BALANCE");
 
+        jLabel4.setText(String.valueOf(securityAccount.getBal()));
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setText("STOCK MARKET");

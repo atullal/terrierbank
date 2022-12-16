@@ -43,7 +43,7 @@ public class Customer extends User implements TransactionAssociated {
         this.loans = new ArrayList<>();
     }
 
-    public Account createAccount(int accountNo, AccountType accountType, int bal, String savingsAccNo){
+    public Account createAccount(int accountNo, AccountType accountType, int bal, Account savingsAccount){
         // TODO Add
         AccountFactory accountFactory = new AccountFactory();
         Account account = null;
@@ -57,7 +57,7 @@ public class Customer extends User implements TransactionAssociated {
                 accounts.add(account);
                 break;
             case SECURITY:
-                account = accountFactory.makeSecurityAccount(this, savingsAccNo, bal, accountNo);
+                account = accountFactory.makeSecurityAccount(this, savingsAccount, bal, accountNo);
                 account.save();
 //                System.out.println(account);
                 accounts.add(account);
@@ -118,6 +118,16 @@ public class Customer extends User implements TransactionAssociated {
             }
         }
         return savingAccounts;
+    }
+
+    public Account getSecurityAccount() {
+        for (Account account :
+                this.accounts) {
+            if (account.getAccountType() == AccountType.SECURITY) {
+                return account;
+            }
+        }
+        return null;
     }
 
     public String getName() {

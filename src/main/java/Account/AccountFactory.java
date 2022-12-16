@@ -13,7 +13,7 @@ public class AccountFactory {
         }
     }
 
-    public Account makeSecurityAccount(Customer customer, String savingsAccount, int bal, int accountNo){
+    public Account makeSecurityAccount(Customer customer, Account savingsAccount, int bal, int accountNo){
         return new SecurityAccount(customer, savingsAccount, bal, accountNo);
     }
 }

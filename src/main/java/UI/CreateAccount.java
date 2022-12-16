@@ -122,6 +122,8 @@ public class CreateAccount extends javax.swing.JPanel {
         }
         else{
             for(int i=0; i<customer.getSavingAccounts().size(); i++){
+                System.out.println(customer.getSavingAccounts().get(i));
+                System.out.println(customer.getSavingAccounts().get(i).getBal());
                 if (customer.getSavingAccounts().get(i).getBal()>4999){
                     eligibleSavingsAccountNos.add(Integer.toString(customer.getSavingAccounts().get(i).getAccountNumber()));
                 }

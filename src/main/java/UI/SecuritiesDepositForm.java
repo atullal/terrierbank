@@ -13,6 +13,7 @@ import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -60,7 +61,7 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<Account>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -100,7 +101,17 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ArrayList<Account> savingsAccounts = ((Customer) UserController.getInstance().getLoggedInUser()).getSavingAccounts();
+        ArrayList<Account> eligibleSavingsAccounts = new ArrayList<>();
+        for (Account account :
+                savingsAccounts) {
+            if (account.getBal() > 2500) {
+                eligibleSavingsAccounts.add(account);
+            }
+        }
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<Account>(eligibleSavingsAccounts.toArray(new Account[eligibleSavingsAccounts.size()])));
+//        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("SECURITIES ACCOUNT");
@@ -163,30 +174,53 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:]
-//        System.out.println(jComboBox1.getSelectedItem());
-//        System.out.println(jTextField1.getText());
-//        System.out.println(jComboBox2.getSelectedItem());
-        Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0,(String) jComboBox2.getSelectedItem());
-        if (AccountDatabase.getAccountFromNumber((Integer)jComboBox2.getSelectedItem()).getBal()>2499){
 
-            double amt = Double.parseDouble(jTextField1.getText());
-            if (newAcc){
-                double fee = amt* Constants.feeRate;
-                amt = amt-fee;
-                Transaction transaction = new Transaction(createdAccount, null, amt, TransactionType.FEE);
+        Account savingsAccount = (Account) jComboBox2.getSelectedItem();
+        System.out.println("Creating new account");
+        if(((Customer )UserController.getInstance().getLoggedInUser()).getSecurityAccount() != null) {
+            Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).getSecurityAccount();
+            if (savingsAccount.getBal()>4999){
+                double amt = Double.parseDouble(jTextField1.getText());
+                if (newAcc){
+                    double fee = amt* Constants.feeRate;
+                    amt = amt-fee;
+                    Transaction transaction = new Transaction(createdAccount, null, amt, TransactionType.FEE);
+                    transaction.process();
+                }
+                Transaction transaction = new Transaction(null, createdAccount, amt, TransactionType.DEPOSIT);
                 transaction.process();
+                UserViewAccounts addUpdatePanel = new UserViewAccounts();
+                UserDashboard.getSplitPane()
+                        .setRightComponent(addUpdatePanel);
             }
-            Transaction transaction = new Transaction(null, createdAccount, amt, TransactionType.DEPOSIT);
-            transaction.process();
-            UserViewAccounts addUpdatePanel = new UserViewAccounts();
-            UserDashboard.getSplitPane()
-                    .setRightComponent(addUpdatePanel);
+            else {
+                // TODO Add error prompt here
+
+                showMessageDialog(this,"Savings account does not have sufficient funds");
+            }
+        } else {
+            Account createdAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, savingsAccount);
+            if (savingsAccount.getBal()>4999){
+                double amt = Double.parseDouble(jTextField1.getText());
+                if (newAcc){
+                    double fee = amt* Constants.feeRate;
+                    amt = amt-fee;
+                    Transaction transaction = new Transaction(createdAccount, null, amt, TransactionType.FEE);
+                    transaction.process();
+                }
+                Transaction transaction = new Transaction(null, createdAccount, amt, TransactionType.DEPOSIT);
+                transaction.process();
+                UserViewAccounts addUpdatePanel = new UserViewAccounts();
+                UserDashboard.getSplitPane()
+                        .setRightComponent(addUpdatePanel);
+            }
+            else {
+                // TODO Add error prompt here
+
+                showMessageDialog(this,"Savings account does not have sufficient funds");
+            }
         }
-        else {
-            // TODO Add error prompt here
-            
-            showMessageDialog(this,"Savings account does not have sufficient funds");
-        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -206,7 +240,7 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private JComboBox<Account> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

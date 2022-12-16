@@ -4,6 +4,7 @@ import Account.Account;
 import Account.AccountType;
 import Account.AccountDatabase;
 import Backend_Files.Constants;
+import Bank.BankController;
 import Database.DatabaseController;
 
 import java.time.LocalDateTime;
@@ -47,7 +48,7 @@ public class Transaction {
         this.date = date.format(now);
         this.time = time.format(now);
         double fee;
-        Account bankAcc = AccountDatabase.getAccountFromNumber(999999999);
+        Account bankManagerAccount = BankController.getInstance().getBankManagerAccount();
         switch (type) {
             case WITHDRAW:
                 System.out.println("Withdrawing from " + sender.getAccountNumber());
@@ -55,12 +56,12 @@ public class Transaction {
                     if (sender.getAccountType().equals(AccountType.CHECKING)){
                         fee = amount* Constants.feeRate;
                         amount = amount-fee;
-                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
-                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankAcc.getAccountNumber()), fee);
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankManagerAccount.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankManagerAccount.getAccountNumber()), fee);
                         sender.setBal(sender.getBal() - fee);
                         sender.update();
-                        bankAcc.setBal(bankAcc.getBal() + fee);
-                        bankAcc.update();
+                        bankManagerAccount.setBal(bankManagerAccount.getBal() + fee);
+                        bankManagerAccount.update();
                     }
                     TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), "Cash", amount);
                     sender.setBal(sender.getBal() - amount);
@@ -82,12 +83,12 @@ public class Transaction {
                     if (sender.getAccountType().equals(AccountType.CHECKING)){
                         fee = amount* Constants.feeRate;
                         amount = amount-fee;
-                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
-                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankAcc.getAccountNumber()), fee);
+                        System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankManagerAccount.getAccountNumber());
+                        TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankManagerAccount.getAccountNumber()), fee);
                         sender.setBal(sender.getBal() - fee);
                         sender.update();
-                        bankAcc.setBal(bankAcc.getBal() + fee);
-                        bankAcc.update();
+                        bankManagerAccount.setBal(bankManagerAccount.getBal() + fee);
+                        bankManagerAccount.update();
                     }
                     System.out.println("Transfer from " + sender.getAccountNumber() + " to " + receiver.getAccountNumber());
                     TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(receiver.getAccountNumber()), amount);
@@ -102,12 +103,12 @@ public class Transaction {
                 }
                 break;
             case FEE:
-                System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankAcc.getAccountNumber());
-                TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()),String.valueOf(bankAcc.getAccountNumber()) , amount);
+                System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankManagerAccount.getAccountNumber());
+                TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()),String.valueOf(bankManagerAccount.getAccountNumber()) , amount);
                 sender.setBal(sender.getBal() - amount);
                 sender.update();
-                bankAcc.setBal(bankAcc.getBal() + amount);
-                bankAcc.update();
+                bankManagerAccount.setBal(bankManagerAccount.getBal() + amount);
+                bankManagerAccount.update();
                 break;
         }
     }

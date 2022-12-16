@@ -42,29 +42,36 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        ArrayList<Transaction> transactions = associated.getTransactions();
+        String[][] transactionData = new String[transactions.size()][6];
+        double totalProfit = 0;
+        int totalTransaction = 0;
+        for (int i = 0; i < transactions.size() ; i++) {
+            Transaction transaction = transactions.get(i);
+            transactionData[i][0] = transaction.getDate();
+            transactionData[i][1] = transaction.getTime();
+            if(transaction.getSender() != null) {
+                transactionData[i][2] = String.valueOf(transaction.getSender().getAccountNumber());
+            } else {
+                transactionData[i][2] = "Self";
+            }
+
+            if(transaction.getReceiver() != null) {
+                transactionData[i][3] = String.valueOf(transaction.getReceiver().getAccountNumber());
+            } else {
+                transactionData[i][3] = "Cash";
+            }
+
+            transactionData[i][4] = String.valueOf(transaction.getAmount());
+            transactionData[i][5] = String.valueOf(transaction.getAmount());
+
+            totalProfit = totalProfit + transaction.getAmount() - transaction.getAmount();
+            totalTransaction = totalTransaction + 1;
+        }
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                transactionData,
             },
             new String [] {
                 "DATE", "TIME", "FROM", "TO", "AMOUNT SENT", "AMOUNT RECIEVED"
@@ -81,6 +88,8 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("TOTAL PROFIT");
+        jLabel2.setText(String.valueOf(totalProfit));
+        jLabel3.setText(String.valueOf(totalTransaction));
 
         jLabel4.setText("TOTAL TRANSACTIONS");
 

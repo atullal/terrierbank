@@ -29,6 +29,12 @@ public class BankController {
         AccountDatabase.insert(new BankManagerAccount(manager, 200000, 999999999));
     }
 
+    public BankManagerAccount getBankManagerAccount() {
+        BankManagerAccount account =  AccountDatabase.getBankManagerAccount();
+        System.out.println(account);
+        return account;
+    }
+
     public BankManager createBankManager() {
         return new BankManager("admin", "12345");
     }
