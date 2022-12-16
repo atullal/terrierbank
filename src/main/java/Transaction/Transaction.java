@@ -52,10 +52,14 @@ public class Transaction {
         switch (type) {
             case WITHDRAW:
                 System.out.println("Withdrawing from " + sender.getAccountNumber());
+                System.out.println("Will show Fees");
                 if (sender.getBal()-amount>=0) {
                     if (sender.getAccountType().equals(AccountType.CHECKING)){
                         fee = amount* Constants.feeRate;
                         amount = amount-fee;
+                        System.out.println("Fees");
+                        System.out.println(fee);
+                        System.out.println(amount);
                         System.out.println("Transfer from " + sender.getAccountNumber() + " to " + bankManagerAccount.getAccountNumber());
                         TransactionDatabase.insert(id, date.format(now), time.format(now), String.valueOf(sender.getAccountNumber()), String.valueOf(bankManagerAccount.getAccountNumber()), fee);
                         sender.setBal(sender.getBal() - fee);

@@ -8,7 +8,12 @@ package UI;
  */
 
 import Account.Account;
+import Backend_Files.Constants;
+import Bank.Customer;
 import Loan.Loan;
+import Transaction.Transaction;
+import Transaction.TransactionType;
+import User.UserController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -250,7 +255,13 @@ public class AdminLoanAccountApproval extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.out.println("Confirm");
         if((String) jComboBox1.getSelectedItem() == "APPROVE") {
-            loan.approve();
+            System.out.println(jTextField1.getText());
+            System.out.println(jTextField2.getText());
+
+            Transaction transaction = new Transaction(null, loan.getAssociatedAccount(), Integer.parseInt(jTextField1.getText()), TransactionType.DEPOSIT);
+            transaction.process();
+
+            loan.approve(Integer.parseInt(jTextField1.getText()), Double.parseDouble(jTextField2.getText()));
         } else {
             loan.deny();
         }

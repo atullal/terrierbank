@@ -173,8 +173,8 @@ public class DepositForm extends javax.swing.JPanel {
             Account newAccount = ((Customer) UserController.getInstance().getLoggedInUser()).createAccount(Integer.parseInt(accountNo), accountType, 0, null);
             double fee = amt* Constants.feeRate;
             amt = amt-fee;
-            Transaction feeTransaction = new Transaction(newAccount, null, amt, TransactionType.FEE);
-            feeTransaction.process();
+//            Transaction feeTransaction = new Transaction(newAccount, null, amt, TransactionType.FEE);
+//            feeTransaction.process();
             Transaction transaction = new Transaction(null, newAccount, amt, TransactionType.DEPOSIT);
             transaction.process();
         } else {

@@ -3,7 +3,16 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import Account.Account;
+import Account.AccountDatabase;
+import Backend_Files.CurrencyHandler;
+import Bank.Customer;
 import Loan.Loan;
+import Transaction.Transaction;
+import Transaction.TransactionType;
+import User.UserController;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -112,6 +121,34 @@ public class PayLoanAmount extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        double amt = Double.parseDouble(jTextField1.getText());
+        String currency = (String) jComboBox1.getSelectedItem();
+        CurrencyHandler currencyHandler = new CurrencyHandler(currency);
+        amt = currencyHandler.convert(amt);
+
+        Account customerAccount = null;
+        for (Account account :
+                ((Customer) UserController.getInstance().getLoggedInUser()).getAccounts()) {
+            System.out.println(account.getAccountNumber());
+            System.out.println(jTextField2.getText());
+            if(account.getAccountNumber() == Integer.parseInt(jTextField2.getText())) {
+                customerAccount = account;
+            }
+        }
+
+        if(customerAccount == null) {
+
+            showMessageDialog(this,"Customer account not found");
+            customerAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(jTextField2.getText()));
+            Transaction transaction = new Transaction(customerAccount, null, amt, TransactionType.WITHDRAW);
+            transaction.process();
+        } else {
+            System.out.println("Customer account found");
+            Transaction transaction = new Transaction(customerAccount, null, amt, TransactionType.WITHDRAW);
+            transaction.process();
+        }
+
+        loan.pay(Integer.parseInt(jTextField1.getText()));
         UserLoanAccount addUpdatePanel = new UserLoanAccount(loan);
         UserDashboard.getSplitPane()
                 .setRightComponent(addUpdatePanel);

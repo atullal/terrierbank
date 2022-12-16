@@ -226,9 +226,9 @@ public class AdminViewAccountBottomPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-//        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(new BankManager());
-//        AdminViewAccount.getSplitPane()
-//                .setRightComponent(addUpdatePanel);
+        ViewTransactionsUser addUpdatePanel = new ViewTransactionsUser(account);
+        AdminViewAccount.getSplitPane()
+                .setRightComponent(addUpdatePanel);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 

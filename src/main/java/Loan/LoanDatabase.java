@@ -68,6 +68,8 @@ public class LoanDatabase {
                 int  repayment = result.getInt("REPAYMENT");
                 String proof = result.getString("PROOF");
                 String status = result.getString("STATUS");
+                LoanStatus loanStatus = LoanStatus.of(status);
+                System.out.println(loanStatus);
                 int  loanAmount = result.getInt("LOANAMOUNT");
                 int  paidAmount = result.getInt("PAIDAMOUNT");
                 String dateString = result.getString("LOANDATE");
@@ -94,7 +96,11 @@ public class LoanDatabase {
     }
 
     public static void update(Loan loan) {
-        String statement = "UPDATE LOAN SET STATUS = '"+loan.getStatus()+"', LOANAMOUNT = "+loan.getLoanAmount()+", PAIDAMOUNT = "+loan.getPaidAmount()+", INTERESTRATE="+loan.getInterestRate()+"  WHERE LOANID = "+loan.getId()+";";
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String date = formatter.format(loan.getLoanDate());
+        System.out.println(loan.getStatus());
+        System.out.println(loan.getLoanAmount());
+        String statement = "UPDATE LOAN SET STATUS = '"+loan.getStatus()+"', LOANAMOUNT = "+loan.getLoanAmount()+", PAIDAMOUNT = "+loan.getPaidAmount()+", INTERESTRATE="+loan.getInterestRate()+", LOANDATE = '"+date+"', REPAYMENT="+loan.getRepaymentPeriod()+" WHERE LOANID = "+loan.getId()+";";
         DatabaseController.getInstance().updateStatement(statement);
     }
 
