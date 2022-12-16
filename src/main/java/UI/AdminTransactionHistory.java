@@ -6,6 +6,7 @@ package UI;
 
 import Transaction.Transaction;
 import Transaction.TransactionAssociated;
+import Transaction.TransactionType;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,6 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
         int totalTransaction = 0;
         for (int i = 0; i < transactions.size() ; i++) {
             Transaction transaction = transactions.get(i);
-            System.out.println(transaction);
             transactionData[i][0] = transaction.getDate();
             transactionData[i][1] = transaction.getTime();
             if(transaction.getSender() != null) {
@@ -65,8 +65,9 @@ public class AdminTransactionHistory extends javax.swing.JPanel {
 
             transactionData[i][4] = String.valueOf(transaction.getAmount());
             transactionData[i][5] = String.valueOf(transaction.getAmount());
-
-            totalProfit = totalProfit + transaction.getAmount() - transaction.getAmount();
+            if(transaction.getType() == TransactionType.FEE) {
+                totalProfit = totalProfit + transaction.getAmount();
+            }
             totalTransaction = totalTransaction + 1;
         }
 

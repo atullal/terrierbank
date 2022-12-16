@@ -4,18 +4,28 @@
  */
 package UI;
 
+import Bank.BankManager;
+import Transaction.Transaction;
+import Transaction.TransactionType;
+import Transaction.TransactionAssociated;
 import User.UserController;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  *
  * @author saisuryavarshith
  */
 public class AdminDailyReport extends javax.swing.JPanel {
+    private TransactionAssociated associated;
 
     /**
      * Creates new form AdminDailyReport
      */
     public AdminDailyReport() {
+        this.associated = UserController.getInstance().getLoggedInUser();
         initComponents();
     }
 
@@ -38,30 +48,45 @@ public class AdminDailyReport extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        ArrayList<Transaction> transactions = associated.getTransactions();
+        String[][] transactionData = new String[transactions.size()][6];
+        double totalProfit = 0;
+        int totalTransaction = 0;
+
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String todayDate = date.format(now);
+
+        for (int i = 0; i < transactions.size() ; i++) {
+            Transaction transaction = transactions.get(i);
+            System.out.println(todayDate);
+            System.out.println(transaction.getDate());
+            if(todayDate.equals(transaction.getDate())){
+                transactionData[i][0] = transaction.getDate();
+                transactionData[i][1] = transaction.getTime();
+                if (transaction.getSender() != null) {
+                    transactionData[i][2] = String.valueOf(transaction.getSender().getAccountNumber());
+                } else {
+                    transactionData[i][2] = "Self";
+                }
+
+                if (transaction.getReceiver() != null) {
+                    transactionData[i][3] = String.valueOf(transaction.getReceiver().getAccountNumber());
+                } else {
+                    transactionData[i][3] = "Cash";
+                }
+
+                transactionData[i][4] = String.valueOf(transaction.getAmount());
+                transactionData[i][5] = String.valueOf(transaction.getAmount());
+                if (transaction.getType() == TransactionType.FEE) {
+                    totalProfit = totalProfit + transaction.getAmount();
+                }
+                totalTransaction = totalTransaction + 1;
+            }
+        }
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
+                transactionData,
             new String [] {
                 "DATE", "TIME", "FROM", "TO", "AMOUNT SENT", "AMOUNT RECIEVED"
             }
@@ -76,6 +101,8 @@ public class AdminDailyReport extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel2.setText(String.valueOf(totalProfit));
+        jLabel3.setText(String.valueOf(totalTransaction));
         jLabel1.setText("TODAY'S PROFIT");
 
         jLabel4.setText("TODAY'S TOTAL TRANSACTIONS");

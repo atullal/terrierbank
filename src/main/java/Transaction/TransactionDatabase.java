@@ -44,13 +44,22 @@ public class TransactionDatabase {
                 Account sender = null;
                 Account receiver = null;
                 TransactionType type = TransactionType.TRANSFER;
-                if(!from.equals("Self")) {
-                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                if (!from.equals("Self")) {
+                    if(from.equals("999999999")) {
+                        sender = AccountDatabase.getBankManagerAccount();
+                    } else {
+                        sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                    }
                 } else {
                     type = TransactionType.DEPOSIT;
                 }
-                if(!to.equals("Cash")) {
-                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                if (!to.equals("Cash")) {
+                    if(to.equals("999999999")) {
+                        receiver = AccountDatabase.getBankManagerAccount();
+                        type = TransactionType.FEE;
+                    } else {
+                        receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                    }
                 } else {
                     type = TransactionType.WITHDRAW;
                 }
@@ -80,13 +89,22 @@ public class TransactionDatabase {
                 Account sender = null;
                 Account receiver = null;
                 TransactionType type = TransactionType.TRANSFER;
-                if(!from.equals("Self")) {
-                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                if (!from.equals("Self")) {
+                    if(from.equals("999999999")) {
+                        sender = AccountDatabase.getBankManagerAccount();
+                    } else {
+                        sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                    }
                 } else {
                     type = TransactionType.DEPOSIT;
                 }
-                if(!to.equals("Cash")) {
-                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                if (!to.equals("Cash")) {
+                    if(to.equals("999999999")) {
+                        receiver = AccountDatabase.getBankManagerAccount();
+                        type = TransactionType.FEE;
+                    } else {
+                        receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                    }
                 } else {
                     type = TransactionType.WITHDRAW;
                 }
@@ -107,8 +125,8 @@ public class TransactionDatabase {
         try {
             while (result.next()) {
                 int id = result.getInt("TRANSCATIONID");
-                String date  = result.getString("DATE");
-                String time  = result.getString("TIME");
+                String date = result.getString("DATE");
+                String time = result.getString("TIME");
                 String from = result.getString("FROMACC");
                 String to = result.getString("TOACC");
                 double amount = result.getDouble("AMOUNT");
@@ -116,13 +134,24 @@ public class TransactionDatabase {
                 Account sender = null;
                 Account receiver = null;
                 TransactionType type = TransactionType.TRANSFER;
-                if(!from.equals("Self")) {
-                    sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                System.out.println("To string");
+                System.out.println(to);
+                if (!from.equals("Self")) {
+                    if(from.equals("999999999")) {
+                        sender = AccountDatabase.getBankManagerAccount();
+                    } else {
+                        sender = AccountDatabase.getAccountFromNumber(Integer.parseInt(from));
+                    }
                 } else {
                     type = TransactionType.DEPOSIT;
                 }
-                if(!to.equals("Cash")) {
-                    receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                if (!to.equals("Cash")) {
+                    if(to.equals("999999999")) {
+                        receiver = AccountDatabase.getBankManagerAccount();
+                        type = TransactionType.FEE;
+                    } else {
+                        receiver = AccountDatabase.getAccountFromNumber(Integer.parseInt(to));
+                    }
                 } else {
                     type = TransactionType.WITHDRAW;
                 }
