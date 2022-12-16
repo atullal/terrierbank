@@ -184,10 +184,12 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
                 if (newAcc){
                     double fee = amt* Constants.feeRate;
                     amt = amt-fee;
-                    Transaction transaction = new Transaction(createdAccount, null, amt, TransactionType.FEE);
+                    Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.DEPOSIT);
                     transaction.process();
+                    Transaction transaction_fee = new Transaction(createdAccount, null, fee, TransactionType.FEE);
+                    transaction_fee.process();
                 }
-                Transaction transaction = new Transaction(null, createdAccount, amt, TransactionType.DEPOSIT);
+                Transaction transaction = new Transaction(savingsAccount, createdAccount, amt, TransactionType.DEPOSIT);
                 transaction.process();
                 UserViewAccounts addUpdatePanel = new UserViewAccounts();
                 UserDashboard.getSplitPane()
