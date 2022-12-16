@@ -8,6 +8,7 @@ import Bank.Customer;
 import Account.SavingsAccount;
 
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -116,7 +117,8 @@ public class CreateAccount extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (customer.getSavingAccounts().size() == 0){
             // TODO Add error prompt here
-            System.out.println("Not eligible");
+            showMessageDialog(this,"Not eligible");
+            
         }
         else{
             for(int i=0; i<customer.getSavingAccounts().size(); i++){
@@ -126,7 +128,8 @@ public class CreateAccount extends javax.swing.JPanel {
             }
             if (eligibleSavingsAccountNos.size() == 0){
                 // TODO Add error prompt here
-                System.out.println("No eligible savings account found!");
+                
+                showMessageDialog(this,"No eligible savings account found!");
             }
             else {
                 TermsAndConditionsSecurities addUpdatePanel = new TermsAndConditionsSecurities(eligibleSavingsAccountNos);

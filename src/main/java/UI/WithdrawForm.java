@@ -11,6 +11,7 @@ import Transaction.Transaction;
 import Transaction.TransactionType;
 import User.UserController;
 import Account.AccountDatabase;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -102,6 +103,7 @@ public class WithdrawForm extends javax.swing.JPanel {
 
         jLabel2.setText("ACCOUNT NUMBER");
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("ACCOUNT TYPE");
@@ -177,7 +179,8 @@ public class WithdrawForm extends javax.swing.JPanel {
         }
 
         if(customerAccount == null) {
-            System.out.println("Customer account not found");
+            
+            showMessageDialog(this,"Customer account not found");
             customerAccount = AccountDatabase.getAccountFromNumber(Integer.parseInt(accountNo));
             Transaction transaction = new Transaction(customerAccount, null, amt, TransactionType.WITHDRAW);
             transaction.process();

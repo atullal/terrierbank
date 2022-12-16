@@ -14,6 +14,7 @@ import Transaction.TransactionType;
 import User.UserController;
 
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -183,7 +184,8 @@ public class SecuritiesDepositForm extends javax.swing.JPanel {
         }
         else {
             // TODO Add error prompt here
-            System.out.println("Savings account does not have sufficient funds");
+            
+            showMessageDialog(this,"Savings account does not have sufficient funds");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

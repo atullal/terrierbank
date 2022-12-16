@@ -26,30 +26,14 @@ public class UserOrAdminLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         uOrA = new javax.swing.JPanel();
-        leftLabel1 = new javax.swing.JPanel();
         login1 = new javax.swing.JButton();
         signUp1 = new javax.swing.JButton();
+        leftLabel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         uOrA.setBackground(new java.awt.Color(255, 255, 255));
         uOrA.setPreferredSize(new java.awt.Dimension(1000, 600));
-
-        leftLabel1.setBackground(new java.awt.Color(192, 39, 39));
-        leftLabel1.setForeground(new java.awt.Color(242, 242, 242));
-        leftLabel1.setName(""); // NOI18N
-        leftLabel1.setPreferredSize(new java.awt.Dimension(755, 0));
-
-        javax.swing.GroupLayout leftLabel1Layout = new javax.swing.GroupLayout(leftLabel1);
-        leftLabel1.setLayout(leftLabel1Layout);
-        leftLabel1Layout.setHorizontalGroup(
-            leftLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        leftLabel1Layout.setVerticalGroup(
-            leftLabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
 
         login1.setText("USER");
         login1.setPreferredSize(new java.awt.Dimension(150, 60));
@@ -67,27 +51,44 @@ public class UserOrAdminLogin extends javax.swing.JFrame {
             }
         });
 
+        leftLabel2.setBackground(new java.awt.Color(192, 39, 39));
+        leftLabel2.setForeground(new java.awt.Color(242, 242, 242));
+        leftLabel2.setPreferredSize(new java.awt.Dimension(755, 0));
+
+        javax.swing.GroupLayout leftLabel2Layout = new javax.swing.GroupLayout(leftLabel2);
+        leftLabel2.setLayout(leftLabel2Layout);
+        leftLabel2Layout.setHorizontalGroup(
+            leftLabel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        leftLabel2Layout.setVerticalGroup(
+            leftLabel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 852, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout uOrALayout = new javax.swing.GroupLayout(uOrA);
         uOrA.setLayout(uOrALayout);
         uOrALayout.setHorizontalGroup(
             uOrALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(uOrALayout.createSequentialGroup()
-                .addComponent(leftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(330, 330, 330)
                 .addGroup(uOrALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(signUp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
         uOrALayout.setVerticalGroup(
             uOrALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(leftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addGroup(uOrALayout.createSequentialGroup()
                 .addGap(340, 340, 340)
                 .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(signUp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(uOrALayout.createSequentialGroup()
+                .addComponent(leftLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 852, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,21 +101,13 @@ public class UserOrAdminLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 852, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(uOrA, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE))
+                .addComponent(uOrA, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        LoginOrSignup log= new LoginOrSignup();
-        log.setVisible(true);
-
-    }//GEN-LAST:event_login1ActionPerformed
 
     private void signUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUp1ActionPerformed
         // TODO add your handling code here:
@@ -122,6 +115,13 @@ public class UserOrAdminLogin extends javax.swing.JFrame {
         AdminLogin log= new AdminLogin();
         log.setVisible(true);
     }//GEN-LAST:event_signUp1ActionPerformed
+
+    private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        LoginOrSignup log= new LoginOrSignup();
+        log.setVisible(true);
+    }//GEN-LAST:event_login1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,7 +160,7 @@ public class UserOrAdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel leftLabel1;
+    private javax.swing.JPanel leftLabel2;
     private javax.swing.JButton login1;
     private javax.swing.JButton signUp1;
     public javax.swing.JPanel uOrA;

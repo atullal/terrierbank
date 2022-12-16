@@ -76,6 +76,10 @@ public class TransferAmount extends javax.swing.JPanel {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jTextField3.setBackground(new java.awt.Color(242, 242, 242));
+
+        jTextField4.setBackground(new java.awt.Color(242, 242, 242));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
