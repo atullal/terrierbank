@@ -34,6 +34,11 @@ public class TermsAndConditionsLoan extends javax.swing.JPanel {
         this.proof = proof;
         this.requestAmount = requestAmount;
         initComponents();
+        jLabel2.setText("<html><body>1.You acknowledge that you are responsible for the repayment of the loan amount, failing which the collateral shall be acquired by terrier bank.<br>"
+                + "<br>2.You acknowledge that the the duration and terms of loan can be changed by terrier bank at any time without any prior notice.<br>"
+                + "<br>3.You acknowledge that in the unlikely event of anything to were to happen to you, your nominee would be responsible for repayment of the loan<br>"
+                + "<br>4. You acknowledge that the collateral documents submitted are legal to the best of your knowledge, faking which would be considered as a fraudulent activity <br>."
+                +"<br>You will not use the sanctioned amount for anything other than the intended purpose, failing which terrier bank has full rights to revoke the loan</body></html>");
        
     }
 
