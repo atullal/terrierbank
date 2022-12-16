@@ -4,9 +4,10 @@
  */
 package UI;
 
-import Account.Account;
 import Stock.Stock;
 import Stock.StockMarket;
+
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +37,7 @@ public class UserStockMarket extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<Stock>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -129,7 +130,7 @@ public class UserStockMarket extends javax.swing.JPanel {
             stockList[i][3] = String.valueOf(stock.getMarketValue());
         }
 
-        
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<Stock>(stocks.toArray(new Stock[stocks.size()])));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 stockList,
                 new String [] {
@@ -147,7 +148,7 @@ public class UserStockMarket extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private JComboBox<Stock> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
