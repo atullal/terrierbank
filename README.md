@@ -47,7 +47,8 @@ The MVC design pattern helps modularize the different components of each entity,
 
 Please refer to the submitted UML diagram for a visual representation of the class structure.
 
----
+![UML Diagram](./uml.png)
 
+---
 For detailed information about how each class and interface operates, please refer to the source code comments and documentation. 
 
